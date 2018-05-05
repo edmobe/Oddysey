@@ -1,0 +1,6 @@
+/Users/shaslynaraya/Desktop/Proyecto2/Oddysey/Oddysey/Oddysey/Oddysey/bin/Release/Oddysey.exe.config
+/Users/shaslynaraya/Desktop/Proyecto2/Oddysey/Oddysey/Oddysey/Oddysey/bin/Release/Oddysey.exe
+/Users/shaslynaraya/Desktop/Proyecto2/Oddysey/Oddysey/Oddysey/Oddysey/bin/Release/Oddysey.pdb
+/Users/shaslynaraya/Desktop/Proyecto2/Oddysey/Oddysey/Oddysey/Oddysey/obj/Release/Oddysey.csproj.CoreCompileInputs.cache
+/Users/shaslynaraya/Desktop/Proyecto2/Oddysey/Oddysey/Oddysey/Oddysey/obj/Release/Oddysey.exe
+/Users/shaslynaraya/Desktop/Proyecto2/Oddysey/Oddysey/Oddysey/Oddysey/obj/Release/Oddysey.pdb
