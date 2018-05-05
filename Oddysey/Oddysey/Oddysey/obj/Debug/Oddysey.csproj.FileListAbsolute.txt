@@ -1,0 +1,7 @@
+C:\Users\edmob\Documents\Proyecto 2\Oddysey\Oddysey\Oddysey\Oddysey\bin\Debug\Oddysey.exe.config
+C:\Users\edmob\Documents\Proyecto 2\Oddysey\Oddysey\Oddysey\Oddysey\bin\Debug\Oddysey.exe
+C:\Users\edmob\Documents\Proyecto 2\Oddysey\Oddysey\Oddysey\Oddysey\bin\Debug\Oddysey.pdb
+C:\Users\edmob\Documents\Proyecto 2\Oddysey\Oddysey\Oddysey\Oddysey\obj\Debug\Oddysey.csprojResolveAssemblyReference.cache
+C:\Users\edmob\Documents\Proyecto 2\Oddysey\Oddysey\Oddysey\Oddysey\obj\Debug\Oddysey.csproj.CoreCompileInputs.cache
+C:\Users\edmob\Documents\Proyecto 2\Oddysey\Oddysey\Oddysey\Oddysey\obj\Debug\Oddysey.exe
+C:\Users\edmob\Documents\Proyecto 2\Oddysey\Oddysey\Oddysey\Oddysey\obj\Debug\Oddysey.pdb
