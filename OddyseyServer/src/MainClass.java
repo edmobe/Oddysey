@@ -18,7 +18,7 @@ public class MainClass {
 	private final File audios = new File("jsonFiles/audios.json");
 
 	public static void main(String[] args) {
-		System.out.println("Hello mom");
+		System.out.println("Hello world");
 
 	}
 	
