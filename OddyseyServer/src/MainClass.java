@@ -1,8 +1,15 @@
+import java.io.IOException;
 
 public class MainClass {
 
 	public static void main(String[] args) {
-		System.out.println("Hello mom");
+
+		Server s1 = new Server();
+		try {
+			s1.receive();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 	}
 
