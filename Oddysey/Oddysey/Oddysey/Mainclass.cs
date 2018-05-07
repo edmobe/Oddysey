@@ -9,8 +9,8 @@ namespace Oddysey
     class Mainclass
     {
         public static void Main(String[] args) {
-            Console.Out.WriteLine("Hola mundo");
-            Console.ReadKey();
+            Client c = new Client();
+            c.send();
         }
     }
 }

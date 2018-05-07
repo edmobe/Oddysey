@@ -1,10 +1,3 @@
-C:/Users/edmob/Documents/Proyecto 2/Oddysey/Oddysey/Oddysey/Oddysey/bin/Debug/Oddysey.exe.config
-C:/Users/edmob/Documents/Proyecto 2/Oddysey/Oddysey/Oddysey/Oddysey/bin/Debug/Oddysey.exe
-C:/Users/edmob/Documents/Proyecto 2/Oddysey/Oddysey/Oddysey/Oddysey/bin/Debug/Oddysey.pdb
-C:/Users/edmob/Documents/Proyecto 2/Oddysey/Oddysey/Oddysey/Oddysey/obj/Debug/Oddysey.csprojResolveAssemblyReference.cache
-C:/Users/edmob/Documents/Proyecto 2/Oddysey/Oddysey/Oddysey/Oddysey/obj/Debug/Oddysey.csproj.CoreCompileInputs.cache
-C:/Users/edmob/Documents/Proyecto 2/Oddysey/Oddysey/Oddysey/Oddysey/obj/Debug/Oddysey.exe
-C:/Users/edmob/Documents/Proyecto 2/Oddysey/Oddysey/Oddysey/Oddysey/obj/Debug/Oddysey.pdb
 /Users/shaslynaraya/Desktop/Proyecto2/Oddysey/Oddysey/Oddysey/Oddysey/bin/Debug/Oddysey.exe.config
 /Users/shaslynaraya/Desktop/Proyecto2/Oddysey/Oddysey/Oddysey/Oddysey/bin/Debug/Oddysey.exe
 /Users/shaslynaraya/Desktop/Proyecto2/Oddysey/Oddysey/Oddysey/Oddysey/bin/Debug/Oddysey.pdb
@@ -12,3 +5,10 @@ C:/Users/edmob/Documents/Proyecto 2/Oddysey/Oddysey/Oddysey/Oddysey/obj/Debug/Od
 /Users/shaslynaraya/Desktop/Proyecto2/Oddysey/Oddysey/Oddysey/Oddysey/obj/Debug/Oddysey.csproj.CoreCompileInputs.cache
 /Users/shaslynaraya/Desktop/Proyecto2/Oddysey/Oddysey/Oddysey/Oddysey/obj/Debug/Oddysey.exe
 /Users/shaslynaraya/Desktop/Proyecto2/Oddysey/Oddysey/Oddysey/Oddysey/obj/Debug/Oddysey.pdb
+C:\Users\edmob\Documents\Proyecto 2\Oddysey\Oddysey\Oddysey\Oddysey\bin\Debug\Oddysey.exe.config
+C:\Users\edmob\Documents\Proyecto 2\Oddysey\Oddysey\Oddysey\Oddysey\bin\Debug\Oddysey.exe
+C:\Users\edmob\Documents\Proyecto 2\Oddysey\Oddysey\Oddysey\Oddysey\bin\Debug\Oddysey.pdb
+C:\Users\edmob\Documents\Proyecto 2\Oddysey\Oddysey\Oddysey\Oddysey\obj\Debug\Oddysey.csprojResolveAssemblyReference.cache
+C:\Users\edmob\Documents\Proyecto 2\Oddysey\Oddysey\Oddysey\Oddysey\obj\Debug\Oddysey.csproj.CoreCompileInputs.cache
+C:\Users\edmob\Documents\Proyecto 2\Oddysey\Oddysey\Oddysey\Oddysey\obj\Debug\Oddysey.exe
+C:\Users\edmob\Documents\Proyecto 2\Oddysey\Oddysey\Oddysey\Oddysey\obj\Debug\Oddysey.pdb
