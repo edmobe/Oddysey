@@ -1,8 +1,19 @@
+
+import java.io.File;
 import java.io.IOException;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.src.server.Server;
 
 public class MainClass {
 
-	public static void main(String[] args) {
+	private final ObjectMapper mapper = new ObjectMapper();
+	private static LogInManager lim = new LogInManager();
+	private static AudioManager am = new AudioManager();
+	private final File users = new File("jsonFiles/users.json");
+	private final File audios = new File("jsonFiles/audios.json");
+
+	public static void main(String[] args) { // pruebas
 
 		Server s1 = new Server();
 		try {
@@ -11,6 +22,29 @@ public class MainClass {
 			e.printStackTrace();
 		}
 
+		System.out.println("Hello world");
+
+	}
+
+	// Getters
+	public LogInManager getAU() {
+		return lim;
+	}
+
+	public AudioManager getAM() {
+		return am;
+	}
+
+	public ObjectMapper getMapper() {
+		return mapper;
+	}
+
+	public File getUsers() {
+		return users;
+	}
+
+	public File getAudios() {
+		return audios;
 	}
 
 }
