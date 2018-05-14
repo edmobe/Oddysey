@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
+using System.Xml;
 
 namespace Oddysey
 {
     class Client
     {
 
-        public void send()
+        public void SendXML()
         {
-            string toSend = "Hola mama";
+            XmlDocument xml = new XmlDocument();
+            xml.Load("Test.xml");
+            string toSend = xml.OuterXml;
 
             IPEndPoint serverAddress = new IPEndPoint(IPAddress.Parse("10.0.2.2"), 5000);
 
@@ -26,7 +29,7 @@ namespace Oddysey
             // Receiving
             byte[] rcvLenBytes = new byte[4];
             clientSocket.Receive(rcvLenBytes);
-            int rcvLen = System.BitConverter.ToInt32(rcvLenBytes, 0);
+            int rcvLen = BitConverter.ToInt32(rcvLenBytes, 0);
             byte[] rcvBytes = new byte[rcvLen];
             clientSocket.Receive(rcvBytes);
             String rcv = System.Text.Encoding.ASCII.GetString(rcvBytes);

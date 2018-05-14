@@ -10,7 +10,7 @@ namespace Oddysey
     {
         public static void Main(String[] args) {
             Client c = new Client();
-            c.send();
+            c.SendXML();
         }
     }
 }

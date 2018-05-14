@@ -12,3 +12,4 @@ C:\Users\edmob\Documents\Proyecto 2\Oddysey\Oddysey\Oddysey\Oddysey\obj\Debug\Od
 C:\Users\edmob\Documents\Proyecto 2\Oddysey\Oddysey\Oddysey\Oddysey\obj\Debug\Oddysey.csproj.CoreCompileInputs.cache
 C:\Users\edmob\Documents\Proyecto 2\Oddysey\Oddysey\Oddysey\Oddysey\obj\Debug\Oddysey.exe
 C:\Users\edmob\Documents\Proyecto 2\Oddysey\Oddysey\Oddysey\Oddysey\obj\Debug\Oddysey.pdb
+C:\Users\edmob\Documents\Proyecto 2\Oddysey\Oddysey\Oddysey\Oddysey\bin\Debug\Test.xml
