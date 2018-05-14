@@ -1,6 +1,5 @@
 
 import java.io.File;
-import java.io.IOException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.src.server.Server;
@@ -15,14 +14,10 @@ public class MainClass {
 
 	public static void main(String[] args) { // pruebas
 
-		Server s1 = new Server();
-		try {
-			s1.receive();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
 		System.out.println("Hello world");
+		
+		Server s1 = new Server();
+		s1.run();
 
 	}
 
