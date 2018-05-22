@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oddysey
 {
@@ -10,7 +6,17 @@ namespace Oddysey
     {
         public static void Main(String[] args) {
             Client c = new Client();
-            c.SendXML();
+            AudioFile s1 = new AudioFile();
+            s1.SetMainParameters("Macarena", "Autores macarenos", "120");
+            s1.Metadata = "akjshdfnuyg87!#@$%TFqdiuehwfung1873!@#$%%T1251891155/*--asdf46519234877....a/sdfujhqwerf";
+            Console.WriteLine("Presione Enter para enviar la macarena :v");
+            while (true)
+            {
+                if (Console.ReadKey().Key == ConsoleKey.Enter)
+                {
+                    c.SendAudioFile(s1);
+                }
+            }
         }
     }
 }

@@ -13,3 +13,10 @@ C:\Users\edmob\Documents\Proyecto 2\Oddysey\Oddysey\Oddysey\Oddysey\obj\Debug\Od
 C:\Users\edmob\Documents\Proyecto 2\Oddysey\Oddysey\Oddysey\Oddysey\obj\Debug\Oddysey.exe
 C:\Users\edmob\Documents\Proyecto 2\Oddysey\Oddysey\Oddysey\Oddysey\obj\Debug\Oddysey.pdb
 C:\Users\edmob\Documents\Proyecto 2\Oddysey\Oddysey\Oddysey\Oddysey\bin\Debug\Test.xml
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\Oddysey\Oddysey\bin\Debug\Oddysey.exe.config
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\Oddysey\Oddysey\bin\Debug\Oddysey.exe
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\Oddysey\Oddysey\bin\Debug\Oddysey.pdb
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\Oddysey\Oddysey\obj\Debug\Oddysey.csprojAssemblyReference.cache
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\Oddysey\Oddysey\obj\Debug\Oddysey.csproj.CoreCompileInputs.cache
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\Oddysey\Oddysey\obj\Debug\Oddysey.exe
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\Oddysey\Oddysey\obj\Debug\Oddysey.pdb

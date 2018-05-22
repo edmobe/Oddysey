@@ -51,6 +51,7 @@ public class Server extends Thread{
 				byte[] receivedBytes = new byte[len];
 				is.read(receivedBytes, 0, len);
 				String received = new String(receivedBytes, 0, len);
+				System.out.println(received);
 				
 				// Sending
 //				String toSend = "Echo: " + received;
