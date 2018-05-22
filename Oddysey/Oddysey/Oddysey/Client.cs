@@ -6,7 +6,6 @@ namespace Oddysey
 {
     class Client
     {
-
         Socket clientSocket;
 
         public void SendMessage(String message)

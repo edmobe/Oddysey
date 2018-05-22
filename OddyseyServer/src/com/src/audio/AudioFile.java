@@ -7,7 +7,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "Audio")
 public class AudioFile {
 
-	// private tipodedatoquealmacenabytes bytes;
 	@XmlElement(name = "Name")
 	public String name;
 	@XmlElement(name = "Author")
@@ -22,6 +21,8 @@ public class AudioFile {
 	public String time;
 	@XmlElement(name = "Score")
 	public String score;
+	@XmlElement(name = "Data")
+	public String data;
 
 	@SuppressWarnings("unused")
 	private AudioFile() {
