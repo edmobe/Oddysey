@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AudioFile.cs" />
+    <Compile Include="OperationData.cs" />
+    <Compile Include="XMLMessage.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Mainclass.cs" />
   </ItemGroup>

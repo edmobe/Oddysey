@@ -1,13 +1,22 @@
 package com.src.server;
 
+/*
 import java.io.ByteArrayInputStream;
 import java.io.File;
+*/
+
 import java.io.IOException;
 import java.io.InputStream;
-//import java.io.OutputStream;
+import java.io.OutputStream;
+import java.io.StringReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+
+/*
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
@@ -22,6 +31,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
+*/
 
 /**
  * Apps server
@@ -41,7 +51,7 @@ public class Server extends Thread{
 				
 				Socket socket = serverSocket.accept();
 				InputStream is = socket.getInputStream();
-				//OutputStream os = socket.getOutputStream();
+				OutputStream os = socket.getOutputStream();
 				
 				// Receiving
 				byte[] lenBytes = new byte[4]; // yo creo que son los chunks
@@ -52,30 +62,44 @@ public class Server extends Thread{
 				is.read(receivedBytes, 0, len);
 				String received = new String(receivedBytes, 0, len);
 				System.out.println(received);
+				String toSend = "";
+
+				try {
+					toSend = unmarshall(received);
+				} catch (JAXBException e) {
+					e.printStackTrace();
+				}
 				
 				// Sending
-//				String toSend = "Echo: " + received;
-//				byte[] toSendBytes = toSend.getBytes();
-//				int toSendLen = toSendBytes.length;
-//				byte[] toSendLenBytes = new byte[4];
-//				toSendLenBytes[0] = (byte) (toSendLen & 0xff);
-//				toSendLenBytes[1] = (byte) ((toSendLen >> 8) & 0xff);
-//				toSendLenBytes[2] = (byte) ((toSendLen >> 16) & 0xff);
-//				toSendLenBytes[3] = (byte) ((toSendLen >> 24) & 0xff);
-//				os.write(toSendLenBytes);
-//				os.write(toSendBytes);
+				byte[] toSendBytes = toSend.getBytes();
+				int toSendLen = toSendBytes.length;
+				byte[] toSendLenBytes = new byte[4];
+				toSendLenBytes[0] = (byte) (toSendLen & 0xff);
+				toSendLenBytes[1] = (byte) ((toSendLen >> 8) & 0xff);
+				toSendLenBytes[2] = (byte) ((toSendLen >> 16) & 0xff);
+				toSendLenBytes[3] = (byte) ((toSendLen >> 24) & 0xff);
+				os.write(toSendLenBytes);
+				os.write(toSendBytes);
 
-				createXML(received);
+				// createXML(received); // FOR DEBBUGING
 				
-				socket.close();
-				
+				socket.close();				
 			}
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+	
+	private String unmarshall(String message) throws JAXBException {
+		JAXBContext jaxbContext = JAXBContext.newInstance(XMLMessage.class);
+		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+		StringReader reader = new StringReader(message);
+		XMLMessage xml = (XMLMessage) unmarshaller.unmarshal(reader);
+		return xml.run();
+	}
 
+	/*
 	private void createXML(String xmlString) {
 		try {
 
@@ -109,5 +133,6 @@ public class Server extends Thread{
 		}
 
 	}
+	*/
 
 }
