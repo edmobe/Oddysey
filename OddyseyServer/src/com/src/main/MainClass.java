@@ -4,9 +4,8 @@ import java.io.File;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.src.audio.AudioManager;
+import com.src.login.LogInManager;
 import com.src.server.Server;
-
-import Login.LogInManager;
 
 public class MainClass {
 

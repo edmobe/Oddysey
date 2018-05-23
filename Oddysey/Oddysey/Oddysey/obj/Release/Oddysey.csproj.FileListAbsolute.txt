@@ -4,7 +4,6 @@
 /Users/shaslynaraya/Desktop/Proyecto2/Oddysey/Oddysey/Oddysey/Oddysey/obj/Release/Oddysey.csproj.CoreCompileInputs.cache
 /Users/shaslynaraya/Desktop/Proyecto2/Oddysey/Oddysey/Oddysey/Oddysey/obj/Release/Oddysey.exe
 /Users/shaslynaraya/Desktop/Proyecto2/Oddysey/Oddysey/Oddysey/Oddysey/obj/Release/Oddysey.pdb
-D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\Oddysey\Oddysey\bin\Release\Test.xml
 D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\Oddysey\Oddysey\bin\Release\Oddysey.exe.config
 D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\Oddysey\Oddysey\bin\Release\Oddysey.exe
 D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\Oddysey\Oddysey\bin\Release\Oddysey.pdb

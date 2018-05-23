@@ -1,4 +1,4 @@
-package Login;
+package com.src.login;
 
 //Esta clase lleva los usuarios
 public class User {
