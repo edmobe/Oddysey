@@ -42,6 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AudioFile.cs" />
+    <Compile Include="odysseyClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="odysseyClient.Designer.cs">
+      <DependentUpon>odysseyClient.cs</DependentUpon>
+    </Compile>
     <Compile Include="OperationData.cs" />
     <Compile Include="XMLMessage.cs" />
     <Compile Include="Client.cs" />
@@ -49,10 +55,18 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml.Serialization" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="odysseyClient.resx">
+      <DependentUpon>odysseyClient.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
