@@ -7,3 +7,13 @@ D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Re
 D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.csproj.CoreCompileInputs.cache
 D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.exe
 D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.pdb
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\OddyseyUI.exe.config
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\OddyseyUI.exe
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\OddyseyUI.pdb
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.csprojAssemblyReference.cache
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.Properties.Resources.resources
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.csproj.GenerateResource.cache
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.csproj.CoreCompileInputs.cache
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.exe
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.pdb
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.Form1.resources
