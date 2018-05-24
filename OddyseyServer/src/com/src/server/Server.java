@@ -67,7 +67,7 @@ public class Server extends Thread{
 		        String received = buffer.toString("UTF-8");
 				
 		        // For testing
-		        try (PrintWriter out = new PrintWriter("filename.txt")) {
+		        try (PrintWriter out = new PrintWriter("Receiving.txt")) {
 				    out.println(received);
 				}
 				

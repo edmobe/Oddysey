@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,9 +13,13 @@ namespace OddyseyUI
 {
     public partial class Form1 : Form
     {
+
+        Client c1;
+
         public Form1()
         {
             Console.WriteLine("Hello world!");
+            c1 = new Client();
             InitializeComponent();
         }
 
@@ -39,12 +44,18 @@ namespace OddyseyUI
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            //Log out button. Cambia el estado de logged in a false y cambia la interfaz y blah blah//
+            
         }
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            
+            XmlMessage m1 = new XmlMessage();
+            AudioFile audio = new AudioFile();
+            audio.SetMainParameters("Macarena", "Los del Rio", "120");
+            audio.Data = Convert.ToBase64String(File.ReadAllBytes("macarena.mp3"));
+            Console.WriteLine(audio.Data);
+            String toSend = m1.GetAddSongXML(audio);
+            c1.SendMessage(toSend);
         }
 
         private void UserLabel_Click(object sender, EventArgs e)
