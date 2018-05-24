@@ -41,9 +41,13 @@ namespace OddyseyUI
             this.UserLabel = new System.Windows.Forms.Label();
             this.FriendList = new System.Windows.Forms.ListBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.AlbumLabel = new System.Windows.Forms.Label();
+            this.ArtistSortLabel = new System.Windows.Forms.Label();
+            this.TitleLabel = new System.Windows.Forms.Label();
             this.vScrollBar2 = new System.Windows.Forms.VScrollBar();
             this.Songlist = new System.Windows.Forms.ListBox();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.ArtistLabel = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.NowPlaying = new System.Windows.Forms.Label();
@@ -57,6 +61,7 @@ namespace OddyseyUI
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -137,6 +142,7 @@ namespace OddyseyUI
             this.SearchButton.TabIndex = 0;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = true;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // panel4
             // 
@@ -163,6 +169,7 @@ namespace OddyseyUI
             this.button1.TabIndex = 3;
             this.button1.Text = "Log out";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // LoggedLabel
             // 
@@ -189,6 +196,7 @@ namespace OddyseyUI
             this.UserLabel.Size = new System.Drawing.Size(77, 21);
             this.UserLabel.TabIndex = 1;
             this.UserLabel.Text = "USER ID";
+            this.UserLabel.Click += new System.EventHandler(this.UserLabel_Click);
             // 
             // FriendList
             // 
@@ -204,6 +212,9 @@ namespace OddyseyUI
             // 
             this.panel3.BackColor = System.Drawing.Color.Olive;
             this.panel3.Controls.Add(this.button2);
+            this.panel3.Controls.Add(this.AlbumLabel);
+            this.panel3.Controls.Add(this.ArtistSortLabel);
+            this.panel3.Controls.Add(this.TitleLabel);
             this.panel3.Controls.Add(this.vScrollBar2);
             this.panel3.Controls.Add(this.Songlist);
             this.panel3.Location = new System.Drawing.Point(208, 121);
@@ -211,6 +222,39 @@ namespace OddyseyUI
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(739, 704);
             this.panel3.TabIndex = 17;
+            // 
+            // AlbumLabel
+            // 
+            this.AlbumLabel.AutoSize = true;
+            this.AlbumLabel.Font = new System.Drawing.Font("Maiandra GD", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AlbumLabel.Location = new System.Drawing.Point(494, 30);
+            this.AlbumLabel.Name = "AlbumLabel";
+            this.AlbumLabel.Size = new System.Drawing.Size(72, 20);
+            this.AlbumLabel.TabIndex = 13;
+            this.AlbumLabel.Text = "ALBUM";
+            this.AlbumLabel.Click += new System.EventHandler(this.AlbumLabel_Click);
+            // 
+            // ArtistSortLabel
+            // 
+            this.ArtistSortLabel.AutoSize = true;
+            this.ArtistSortLabel.Font = new System.Drawing.Font("Maiandra GD", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ArtistSortLabel.Location = new System.Drawing.Point(267, 27);
+            this.ArtistSortLabel.Name = "ArtistSortLabel";
+            this.ArtistSortLabel.Size = new System.Drawing.Size(69, 20);
+            this.ArtistSortLabel.TabIndex = 12;
+            this.ArtistSortLabel.Text = "ARTIST";
+            this.ArtistSortLabel.Click += new System.EventHandler(this.ArtistSortLabel_Click);
+            // 
+            // TitleLabel
+            // 
+            this.TitleLabel.AutoSize = true;
+            this.TitleLabel.Font = new System.Drawing.Font("Maiandra GD", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TitleLabel.Location = new System.Drawing.Point(59, 27);
+            this.TitleLabel.Name = "TitleLabel";
+            this.TitleLabel.Size = new System.Drawing.Size(56, 20);
+            this.TitleLabel.TabIndex = 11;
+            this.TitleLabel.Text = "TITLE";
+            this.TitleLabel.Click += new System.EventHandler(this.TitleLabel_Click);
             // 
             // vScrollBar2
             // 
@@ -229,11 +273,13 @@ namespace OddyseyUI
             this.Songlist.Name = "Songlist";
             this.Songlist.Size = new System.Drawing.Size(681, 544);
             this.Songlist.TabIndex = 0;
+            this.Songlist.SelectedIndexChanged += new System.EventHandler(this.Songlist_SelectedIndexChanged);
             // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.Gray;
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel5.Controls.Add(this.trackBar1);
             this.panel5.Controls.Add(this.ArtistLabel);
             this.panel5.Controls.Add(this.label6);
             this.panel5.Controls.Add(this.NowPlaying);
@@ -246,6 +292,13 @@ namespace OddyseyUI
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1165, 178);
             this.panel5.TabIndex = 1;
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.Location = new System.Drawing.Point(824, 85);
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(104, 56);
+            this.trackBar1.TabIndex = 14;
             // 
             // ArtistLabel
             // 
@@ -310,6 +363,7 @@ namespace OddyseyUI
             this.Equalizer.TabIndex = 1;
             this.Equalizer.Text = "Equalizer";
             this.Equalizer.UseVisualStyleBackColor = false;
+            this.Equalizer.Click += new System.EventHandler(this.Equalizer_Click);
             // 
             // Play
             // 
@@ -323,6 +377,7 @@ namespace OddyseyUI
             this.Play.TabIndex = 0;
             this.Play.Text = "Play";
             this.Play.UseVisualStyleBackColor = false;
+            this.Play.Click += new System.EventHandler(this.Play_Click);
             // 
             // button2
             // 
@@ -355,8 +410,10 @@ namespace OddyseyUI
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -386,6 +443,10 @@ namespace OddyseyUI
         private System.Windows.Forms.Label ArtistLabel;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label TitleLabel;
+        private System.Windows.Forms.Label AlbumLabel;
+        private System.Windows.Forms.Label ArtistSortLabel;
+        private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Button button2;
     }
 }
