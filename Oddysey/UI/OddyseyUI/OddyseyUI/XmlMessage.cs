@@ -37,7 +37,6 @@ namespace OddyseyUI
             var settings = new XmlWriterSettings
             {
                 Indent = true,
-                OmitXmlDeclaration = true
             };
             using (var stream = new StringWriter())
             using (var writer = XmlWriter.Create(stream, settings))

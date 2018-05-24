@@ -1,28 +1,29 @@
 package com.src.server;
 
-/*
-import java.io.ByteArrayInputStream;
-import java.io.File;
-*/
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.io.StringReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.stream.StreamResult;
 
-/*
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
@@ -31,7 +32,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
-*/
+
 
 /**
  * Apps server
@@ -51,26 +52,28 @@ public class Server extends Thread{
 				
 				Socket socket = serverSocket.accept();
 				InputStream is = socket.getInputStream();
-				OutputStream os = socket.getOutputStream();
+				//OutputStream os = socket.getOutputStream();
 				
-				// Receiving
-				byte[] lenBytes = new byte[4]; // yo creo que son los chunks
-				is.read(lenBytes, 0, 4);
-				int len = (((lenBytes[3] & 0xff) << 24) | ((lenBytes[2] & 0xff) << 16) | ((lenBytes[1] & 0xff) << 8)
-						| (lenBytes[0] & 0xff)); // no s[e qu[e es esto :(
-				byte[] receivedBytes = new byte[len];
-				is.read(receivedBytes, 0, len);
-				String received = new String(receivedBytes, 0, len);
-				System.out.println(received);
-				String toSend = "";
+				
+		        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
 
-				try {
-					toSend = unmarshall(received);
-				} catch (JAXBException e) {
-					e.printStackTrace();
+		        int nRead;
+		        byte[] data = new byte[16384];
+
+		        while ((nRead = is.read(data, 0, data.length)) != -1) {
+		          buffer.write(data, 0, nRead);
+		        }
+
+		        String received = buffer.toString("UTF-8");
+				
+		        // For testing
+		        try (PrintWriter out = new PrintWriter("filename.txt")) {
+				    out.println(received);
 				}
 				
+		        
 				// Sending
+				/*
 				byte[] toSendBytes = toSend.getBytes();
 				int toSendLen = toSendBytes.length;
 				byte[] toSendLenBytes = new byte[4];
@@ -80,6 +83,7 @@ public class Server extends Thread{
 				toSendLenBytes[3] = (byte) ((toSendLen >> 24) & 0xff);
 				os.write(toSendLenBytes);
 				os.write(toSendBytes);
+				*/
 
 				// createXML(received); // FOR DEBBUGING
 				
@@ -91,15 +95,26 @@ public class Server extends Thread{
 		}
 	}
 	
+	/*
 	private String unmarshall(String message) throws JAXBException {
-		JAXBContext jaxbContext = JAXBContext.newInstance(XMLMessage.class);
+		String cleanXMLString = null;
+		Pattern pattern = null;
+		Matcher matcher = null;
+		pattern = Pattern.compile("[\\000]*");
+		matcher = pattern.matcher(message);
+		
+		if (matcher.find()) {
+		   cleanXMLString = matcher.replaceAll("");
+		}
+		
+		JAXBContext jaxbContext = JAXBContext.newInstance(XmlMessage.class);
 		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-		StringReader reader = new StringReader(message);
-		XMLMessage xml = (XMLMessage) unmarshaller.unmarshal(reader);
+		StringReader reader = new StringReader(cleanXMLString);
+		XmlMessage xml = (XmlMessage) unmarshaller.unmarshal(reader);
 		return xml.run();
 	}
 
-	/*
+	
 	private void createXML(String xmlString) {
 		try {
 

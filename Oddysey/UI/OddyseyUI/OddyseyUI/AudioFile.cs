@@ -11,7 +11,7 @@ namespace OddyseyUI
         public String Lyrics { get; set; }
         public String Time { get; set; }
         public String Score { get; set; }
-        public byte[] Data { get; set; }
+        public String Data { get; set; }
 
         public void SetMainParameters(String name, String author, String time)
         {
