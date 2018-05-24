@@ -37,9 +37,14 @@ namespace OddyseyUI
             // Enciende/Apaga el equalizador
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             //Log out button. Cambia el estado de logged in a false y cambia la interfaz y blah blah//
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void UserLabel_Click(object sender, EventArgs e)
