@@ -87,6 +87,8 @@ namespace OddyseyUI
             /*Variable logged in o algo asi que este en false cuando no hay usuario conectado.
              * Si el usuario se conecta loggedIn= true y cambia el texto al nombre de la persona que se conecto.
              */
+            Form3 login = new Form3();
+            login.Show();
 
         }
         
