@@ -15,11 +15,13 @@ namespace OddyseyUI
     {
 
         Client c1;
+        public Boolean Logd;
 
         public Form1()
         {
             Console.WriteLine("Hello world!");
             c1 = new Client();
+            Logd = false;
             InitializeComponent();
         }
 
@@ -54,7 +56,9 @@ namespace OddyseyUI
         private void Button1_Click(object sender, EventArgs e)
         {
             LoggedLabel.Text = "Log in now";
-            UserLabel.Text = "Offline";        }
+            UserLabel.Text = "Offline";
+            Logd = false;
+        }
 
         private void Button2_Click(object sender, EventArgs e)
         {
@@ -165,8 +169,20 @@ namespace OddyseyUI
             /*Variable logged in o algo asi que este en false cuando no hay usuario conectado.
              * Si el usuario se conecta loggedIn= true y cambia el texto al nombre de la persona que se conecto.
              */
-            Form3 login = new Form3(this);
-            login.Show();
+            Form3 login;
+            
+            if (Logd == false)
+
+            {
+                login = new Form3(this);
+                login.Show();
+                Logd = true;
+            }
+            else
+            {
+                var result = MessageBox.Show("There is an account logged in already");
+            }
+            
         }
 
 

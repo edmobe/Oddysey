@@ -26,11 +26,15 @@ namespace OddyseyUI
             String user = LogUsername.Text;
             String passw = LogPassword.Text;
             //Validation process with the given data.
-            if (user == "1")
+            if (string.IsNullOrEmpty(user) && string.IsNullOrEmpty(passw))
             {
-                var result = MessageBox.Show("Please enter your username");// message to ask to fill in the blanks
+                var result = MessageBox.Show("Please enter your username\r\nPlease enter your password");// message to ask to fill in the blanks
             }
-            //Once Validated
+            else if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(passw))
+            {
+                var result = MessageBox.Show("Please Fill in the blanks");
+            }
+            //Once Validated||
             else
             {
                 form1.ChangeLabel(user);
@@ -50,6 +54,11 @@ namespace OddyseyUI
 
 
             //Complete the registration.
+        }
+
+        private void Form3_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

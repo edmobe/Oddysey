@@ -83,7 +83,7 @@ namespace OddyseyUI
             // NotiLabel
             // 
             this.NotiLabel.AutoSize = true;
-            this.NotiLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.NotiLabel.BackColor = System.Drawing.Color.Gray;
             this.NotiLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.NotiLabel.Font = new System.Drawing.Font("Maiandra GD", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NotiLabel.ForeColor = System.Drawing.Color.GhostWhite;
@@ -105,7 +105,7 @@ namespace OddyseyUI
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.panel2.Controls.Add(this.SongLabel);
             this.panel2.Controls.Add(this.Search);
             this.panel2.Controls.Add(this.SearchButton);
@@ -118,7 +118,7 @@ namespace OddyseyUI
             // 
             this.SongLabel.AutoSize = true;
             this.SongLabel.Font = new System.Drawing.Font("Maiandra GD", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SongLabel.ForeColor = System.Drawing.Color.Black;
+            this.SongLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.SongLabel.Location = new System.Drawing.Point(27, 9);
             this.SongLabel.Name = "SongLabel";
             this.SongLabel.Size = new System.Drawing.Size(133, 51);
@@ -158,9 +158,9 @@ namespace OddyseyUI
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.Olive;
+            this.button1.BackColor = System.Drawing.Color.Gray;
             this.button1.Font = new System.Drawing.Font("Maiandra GD", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.button1.ForeColor = System.Drawing.Color.GhostWhite;
             this.button1.Location = new System.Drawing.Point(113, 37);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
@@ -172,7 +172,7 @@ namespace OddyseyUI
             // LoggedLabel
             // 
             this.LoggedLabel.AutoSize = true;
-            this.LoggedLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.LoggedLabel.BackColor = System.Drawing.Color.Gray;
             this.LoggedLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.LoggedLabel.Font = new System.Drawing.Font("Maiandra GD", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LoggedLabel.ForeColor = System.Drawing.SystemColors.ButtonFace;
@@ -184,9 +184,9 @@ namespace OddyseyUI
             this.LoggedLabel.Click += new System.EventHandler(this.LoggedLabel_Click);
             // 
             // UserLabel
-            
+            // 
             this.UserLabel.AutoSize = true;
-            this.UserLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.UserLabel.BackColor = System.Drawing.Color.Gray;
             this.UserLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.UserLabel.Font = new System.Drawing.Font("Maiandra GD", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UserLabel.ForeColor = System.Drawing.SystemColors.Control;
@@ -196,7 +196,6 @@ namespace OddyseyUI
             this.UserLabel.TabIndex = 1;
             this.UserLabel.Text = "Offline";
             this.UserLabel.Click += new System.EventHandler(this.UserLabel_Click);
-            
             // 
             // FriendList
             // 
@@ -209,7 +208,7 @@ namespace OddyseyUI
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.Olive;
+            this.panel3.BackColor = System.Drawing.Color.Silver;
             this.panel3.Controls.Add(this.button2);
             this.panel3.Controls.Add(this.AlbumLabel);
             this.panel3.Controls.Add(this.ArtistSortLabel);
@@ -358,7 +357,7 @@ namespace OddyseyUI
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.button3.Font = new System.Drawing.Font("Maiandra GD", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.GhostWhite;
-            this.button3.Location = new System.Drawing.Point(554, 44);
+            this.button3.Location = new System.Drawing.Point(549, 44);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 27);
             this.button3.TabIndex = 15;
@@ -418,7 +417,7 @@ namespace OddyseyUI
             this.Play.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.Play.Font = new System.Drawing.Font("Maiandra GD", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Play.ForeColor = System.Drawing.Color.GhostWhite;
-            this.Play.Location = new System.Drawing.Point(474, 44);
+            this.Play.Location = new System.Drawing.Point(454, 44);
             this.Play.Name = "Play";
             this.Play.Size = new System.Drawing.Size(75, 27);
             this.Play.TabIndex = 0;
@@ -448,7 +447,7 @@ namespace OddyseyUI
             // Stop
             // 
             this.Stop.Image = global::OddyseyUI.Properties.Resources.Stop11;
-            this.Stop.Location = new System.Drawing.Point(571, 4);
+            this.Stop.Location = new System.Drawing.Point(549, 4);
             this.Stop.Name = "Stop";
             this.Stop.Size = new System.Drawing.Size(36, 36);
             this.Stop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
