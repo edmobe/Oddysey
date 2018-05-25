@@ -49,13 +49,14 @@ namespace OddyseyUI
 
         private void Button2_Click(object sender, EventArgs e)
         {
+            // Recordar verificar si la canción ya existe
             XmlMessage m1 = new XmlMessage();
             AudioFile audio = new AudioFile();
             audio.SetMainParameters("Macarena", "Los del Rio", "120");
             audio.Data = Convert.ToBase64String(File.ReadAllBytes("macarena.mp3"));
             Console.WriteLine(audio.Data);
             String toSend = m1.GetAddSongXML(audio);
-            c1.SendMessage(toSend);
+            c1.SendMessage(toSend, "001");
         }
 
         private void UserLabel_Click(object sender, EventArgs e)

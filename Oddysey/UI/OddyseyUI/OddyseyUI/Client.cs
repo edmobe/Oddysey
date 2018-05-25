@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -11,10 +10,10 @@ namespace OddyseyUI
     {
         Socket clientSocket;
 
-        public void SendMessage(String message)
+        public void SendMessage(String message, String OPCode)
         {
 
-            //Testing
+            // Testing
             CreateTestFile(message);
 
             // Main parameters
@@ -23,7 +22,7 @@ namespace OddyseyUI
             clientSocket.Connect(serverAddress);
 
             // Sending OPCode
-            byte[] toSendCode = System.Text.Encoding.UTF8.GetBytes("001");
+            byte[] toSendCode = System.Text.Encoding.UTF8.GetBytes(OPCode);
             clientSocket.Send(toSendCode);
 
             clientSocket.Close();

@@ -4,11 +4,13 @@ package com.src.server;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.StringReader;
+import java.io.UnsupportedEncodingException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.regex.Matcher;
@@ -42,6 +44,11 @@ import org.xml.sax.InputSource;
  */
 public class Server extends Thread{
 	
+	private String opCode;
+	
+	/**
+	 * Runs the Socket loop.
+	 */
 	public void run() {
 		
 		try {
@@ -61,19 +68,17 @@ public class Server extends Thread{
 		        while ((nRead = is.read(data, 0, data.length)) != -1) {
 			          buffer.write(data, 0, nRead);
 		        }
-		        String received = buffer.toString("UTF-8");
-		        System.out.println("OPCode: " + received);
+		        opCode = buffer.toString("UTF-8");
+		        System.out.println("OPCode: " + opCode);
 		        
 		        
-		        //Re-open (literally the one and only way I found to make this work)
+		        // Re-open (literally the one and only way I found to make this work)
 		        socket = serverSocket.accept();
 		        is = socket.getInputStream();
 		        os = socket.getOutputStream();
 		        
 		        // Sending message based on OPCode
-		        String toSend = "Got the OPCode " + received + " (add song).";			
-				os.write(toSend.getBytes("UTF-8"));
-		        
+		        reply(os, opCode);		        
 		        
 		        // Getting message
 		        buffer = new ByteArrayOutputStream();
@@ -81,20 +86,49 @@ public class Server extends Thread{
 		        while ((nRead = is.read(data, 0, data.length)) != -1) {
 		          buffer.write(data, 0, nRead);
 		        }
-		        received = buffer.toString("UTF-8");
+		        String received = buffer.toString("UTF-8");
+		        
+		        receive(received, opCode);
 		        System.out.println("Received song!");
 		        
-		        // For testing
-		        try (PrintWriter out = new PrintWriter("Receiving.txt")) {
-				    out.println(received);
-				}
-		        System.out.println("Saved song!");
-
+		        
 				socket.close();				
 			}
 			
-		} catch (IOException e) {
+		} catch (IOException | JAXBException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Sends a reply based on the opCode
+	 * @param os {@code OutputStram}
+	 * @param opCode operation code
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 */
+	private void reply(OutputStream os, String opCode) throws UnsupportedEncodingException, IOException {
+		if (opCode.equals("001")) { // Add song
+			String toSend = "Got the OPCode " + opCode + " (add song).";			
+			os.write(toSend.getBytes("UTF-8"));
+		}
+	}
+	
+	/**
+	 * Decides which operation to with the received input based on the operation code.
+	 * @param received input {@code String}
+	 * @param opCode operation code
+	 * @throws JAXBException
+	 * @throws FileNotFoundException
+	 */
+	private void receive(String received, String opCode) throws JAXBException, FileNotFoundException {
+		if (opCode.equals("001")) { // Add song
+			// For testing
+	        try (PrintWriter out = new PrintWriter("Receiving.txt")) {
+			    out.println(received);
+			}
+	        System.out.println("Saved song!");
+			// Aquí va el algoritmo para agregar received al JSON de canciones
 		}
 	}
 	
@@ -116,8 +150,9 @@ public class Server extends Thread{
 		XmlMessage xml = (XmlMessage) unmarshaller.unmarshal(reader);
 		return xml.run();
 	}
+	*/
 
-	
+	/*
 	private void createXML(String xmlString) {
 		try {
 
@@ -142,7 +177,7 @@ public class Server extends Thread{
 			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 
 			// Initialize StreamResult with File object to save to file
-			StreamResult result = new StreamResult(new File("Test.xml"));
+			StreamResult result = new StreamResult(new File("Macarena.xml"));
 			DOMSource source = new DOMSource(document);
 			transformer.transform(source, result);
 
