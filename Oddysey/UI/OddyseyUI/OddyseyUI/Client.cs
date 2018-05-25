@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Windows.Forms;
 
 namespace OddyseyUI
 {
@@ -15,28 +17,32 @@ namespace OddyseyUI
             //Testing
             CreateTestFile(message);
 
-            IPEndPoint serverAddress = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 5000);
+            // Main parameters
+            IPEndPoint serverAddress = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 6000);
             clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             clientSocket.Connect(serverAddress);
 
-            // Sending
-            int toSendLen = System.Text.Encoding.UTF8.GetByteCount(message);
+            // Sending OPCode
+            byte[] toSendCode = System.Text.Encoding.UTF8.GetBytes("001");
+            clientSocket.Send(toSendCode);
+
+            clientSocket.Close();
+
+            // Re-open (literally the one and only way I found to make this work)
+            clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            clientSocket.Connect(serverAddress);
+
+            // Sending data based on OPCode
             byte[] toSendBytes = System.Text.Encoding.UTF8.GetBytes(message);
-            byte[] toSendLenBytes = BitConverter.GetBytes(toSendLen);
-            //clientSocket.Send(toSendLenBytes);
             clientSocket.Send(toSendBytes);
 
-            /*
             // Receiving
-            byte[] rcvLenBytes = new byte[4];
-            clientSocket.Receive(rcvLenBytes);
-            int rcvLen = BitConverter.ToInt32(rcvLenBytes, 0);
-            byte[] rcvBytes = new byte[rcvLen];
-            clientSocket.Receive(rcvBytes);
-            String rcv = System.Text.Encoding.ASCII.GetString(rcvBytes);
-            Console.WriteLine("Mensaje recibido del servidor: " + rcv);
-            */
-
+            byte[] replyBytes = new byte[10000000];
+            clientSocket.Receive(replyBytes);
+            string reply = System.Text.Encoding.UTF8.GetString(replyBytes);
+            string finalReply = reply.Replace("\0", "");
+            MessageBox.Show("Reply: " + finalReply);
+            
             clientSocket.Close();
 
         }

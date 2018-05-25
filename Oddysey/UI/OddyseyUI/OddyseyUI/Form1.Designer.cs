@@ -41,6 +41,7 @@ namespace OddyseyUI
             this.UserLabel = new System.Windows.Forms.Label();
             this.FriendList = new System.Windows.Forms.ListBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.AlbumLabel = new System.Windows.Forms.Label();
             this.ArtistSortLabel = new System.Windows.Forms.Label();
             this.TitleLabel = new System.Windows.Forms.Label();
@@ -55,7 +56,6 @@ namespace OddyseyUI
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.Equalizer = new System.Windows.Forms.Button();
             this.Play = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -99,6 +99,7 @@ namespace OddyseyUI
             this.NotificationList.Name = "NotificationList";
             this.NotificationList.Size = new System.Drawing.Size(170, 624);
             this.NotificationList.TabIndex = 11;
+            this.NotificationList.SelectedIndexChanged += new System.EventHandler(this.NotificationList_SelectedIndexChanged);
             // 
             // panel2
             // 
@@ -223,13 +224,24 @@ namespace OddyseyUI
             this.panel3.Size = new System.Drawing.Size(739, 704);
             this.panel3.TabIndex = 17;
             // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Maiandra GD", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(604, 36);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(100, 29);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Add song";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            // 
             // AlbumLabel
             // 
             this.AlbumLabel.AutoSize = true;
             this.AlbumLabel.Font = new System.Drawing.Font("Maiandra GD", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AlbumLabel.Location = new System.Drawing.Point(494, 30);
             this.AlbumLabel.Name = "AlbumLabel";
-            this.AlbumLabel.Size = new System.Drawing.Size(72, 20);
+            this.AlbumLabel.Size = new System.Drawing.Size(89, 25);
             this.AlbumLabel.TabIndex = 13;
             this.AlbumLabel.Text = "ALBUM";
             this.AlbumLabel.Click += new System.EventHandler(this.AlbumLabel_Click);
@@ -240,7 +252,7 @@ namespace OddyseyUI
             this.ArtistSortLabel.Font = new System.Drawing.Font("Maiandra GD", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ArtistSortLabel.Location = new System.Drawing.Point(267, 27);
             this.ArtistSortLabel.Name = "ArtistSortLabel";
-            this.ArtistSortLabel.Size = new System.Drawing.Size(69, 20);
+            this.ArtistSortLabel.Size = new System.Drawing.Size(86, 25);
             this.ArtistSortLabel.TabIndex = 12;
             this.ArtistSortLabel.Text = "ARTIST";
             this.ArtistSortLabel.Click += new System.EventHandler(this.ArtistSortLabel_Click);
@@ -251,7 +263,7 @@ namespace OddyseyUI
             this.TitleLabel.Font = new System.Drawing.Font("Maiandra GD", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TitleLabel.Location = new System.Drawing.Point(59, 27);
             this.TitleLabel.Name = "TitleLabel";
-            this.TitleLabel.Size = new System.Drawing.Size(56, 20);
+            this.TitleLabel.Size = new System.Drawing.Size(70, 25);
             this.TitleLabel.TabIndex = 11;
             this.TitleLabel.Text = "TITLE";
             this.TitleLabel.Click += new System.EventHandler(this.TitleLabel_Click);
@@ -292,12 +304,13 @@ namespace OddyseyUI
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1165, 178);
             this.panel5.TabIndex = 1;
+            this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel5_Paint);
             // 
             // trackBar1
             // 
             this.trackBar1.Location = new System.Drawing.Point(824, 85);
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(104, 56);
+            this.trackBar1.Size = new System.Drawing.Size(104, 69);
             this.trackBar1.TabIndex = 14;
             // 
             // ArtistLabel
@@ -332,6 +345,7 @@ namespace OddyseyUI
             this.NowPlaying.Size = new System.Drawing.Size(140, 19);
             this.NowPlaying.TabIndex = 4;
             this.NowPlaying.Text = "NOW PLAYING:";
+            this.NowPlaying.Click += new System.EventHandler(this.NowPlaying_Click);
             // 
             // pictureBox1
             // 
@@ -378,17 +392,6 @@ namespace OddyseyUI
             this.Play.Text = "Play";
             this.Play.UseVisualStyleBackColor = false;
             this.Play.Click += new System.EventHandler(this.Play_Click);
-            // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("Maiandra GD", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(604, 36);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 29);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Add song";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // Form1
             // 

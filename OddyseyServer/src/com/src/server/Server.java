@@ -46,47 +46,50 @@ public class Server extends Thread{
 		
 		try {
 			@SuppressWarnings("resource")
-			ServerSocket serverSocket = new ServerSocket(5000, 10); // INVESTIGAR SIGNIFICADO DE BACKLOG
+			ServerSocket serverSocket = new ServerSocket(6000, 10); // INVESTIGAR SIGNIFICADO DE BACKLOG
 			
 			while (true) {
 				
 				Socket socket = serverSocket.accept();
 				InputStream is = socket.getInputStream();
-				//OutputStream os = socket.getOutputStream();
+				OutputStream os = socket.getOutputStream();
 				
-				
+				// Getting OPCode
 		        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-
 		        int nRead;
-		        byte[] data = new byte[16384];
-
+		        byte[] data = new byte[100];
+		        while ((nRead = is.read(data, 0, data.length)) != -1) {
+			          buffer.write(data, 0, nRead);
+		        }
+		        String received = buffer.toString("UTF-8");
+		        System.out.println("OPCode: " + received);
+		        
+		        
+		        //Re-open (literally the one and only way I found to make this work)
+		        socket = serverSocket.accept();
+		        is = socket.getInputStream();
+		        os = socket.getOutputStream();
+		        
+		        // Sending message based on OPCode
+		        String toSend = "Got the OPCode " + received + " (add song).";			
+				os.write(toSend.getBytes("UTF-8"));
+		        
+		        
+		        // Getting message
+		        buffer = new ByteArrayOutputStream();
+		        data = new byte[16384];
 		        while ((nRead = is.read(data, 0, data.length)) != -1) {
 		          buffer.write(data, 0, nRead);
 		        }
-
-		        String received = buffer.toString("UTF-8");
-				
+		        received = buffer.toString("UTF-8");
+		        System.out.println("Received song!");
+		        
 		        // For testing
 		        try (PrintWriter out = new PrintWriter("Receiving.txt")) {
 				    out.println(received);
 				}
-				
-		        
-				// Sending
-				/*
-				byte[] toSendBytes = toSend.getBytes();
-				int toSendLen = toSendBytes.length;
-				byte[] toSendLenBytes = new byte[4];
-				toSendLenBytes[0] = (byte) (toSendLen & 0xff);
-				toSendLenBytes[1] = (byte) ((toSendLen >> 8) & 0xff);
-				toSendLenBytes[2] = (byte) ((toSendLen >> 16) & 0xff);
-				toSendLenBytes[3] = (byte) ((toSendLen >> 24) & 0xff);
-				os.write(toSendLenBytes);
-				os.write(toSendBytes);
-				*/
+		        System.out.println("Saved song!");
 
-				// createXML(received); // FOR DEBBUGING
-				
 				socket.close();				
 			}
 			
