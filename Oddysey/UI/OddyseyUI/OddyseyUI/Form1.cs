@@ -53,8 +53,8 @@ namespace OddyseyUI
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            
-        }
+            LoggedLabel.Text = "Log in now";
+            UserLabel.Text = "Offline";        }
 
         private void Button2_Click(object sender, EventArgs e)
         {
@@ -87,9 +87,15 @@ namespace OddyseyUI
             /*Variable logged in o algo asi que este en false cuando no hay usuario conectado.
              * Si el usuario se conecta loggedIn= true y cambia el texto al nombre de la persona que se conecto.
              */
-            Form3 login = new Form3();
+            Form3 login = new Form3(this);
             login.Show();
 
+        }
+
+        public void ChangeLabel(String text)
+        {
+            LoggedLabel.Text = "Logged in as:";
+            UserLabel.Text = text;
         }
         
         private void TitleLabel_Click(object sender, EventArgs e)
@@ -152,6 +158,15 @@ namespace OddyseyUI
         private void button3_Click_1(object sender, EventArgs e)
         {
             c1.Stop();
+        }
+
+        private void LoggedLabel_Click(object sender, EventArgs e)
+        {
+            /*Variable logged in o algo asi que este en false cuando no hay usuario conectado.
+             * Si el usuario se conecta loggedIn= true y cambia el texto al nombre de la persona que se conecto.
+             */
+            Form3 login = new Form3(this);
+            login.Show();
         }
 
         /*
