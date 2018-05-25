@@ -56,6 +56,7 @@ namespace OddyseyUI
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.Equalizer = new System.Windows.Forms.Button();
             this.Play = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -291,6 +292,7 @@ namespace OddyseyUI
             // 
             this.panel5.BackColor = System.Drawing.Color.Gray;
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel5.Controls.Add(this.button3);
             this.panel5.Controls.Add(this.trackBar1);
             this.panel5.Controls.Add(this.ArtistLabel);
             this.panel5.Controls.Add(this.label6);
@@ -393,6 +395,20 @@ namespace OddyseyUI
             this.Play.UseVisualStyleBackColor = false;
             this.Play.Click += new System.EventHandler(this.Play_Click);
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.button3.Font = new System.Drawing.Font("Maiandra GD", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.GhostWhite;
+            this.button3.Location = new System.Drawing.Point(623, 54);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(84, 34);
+            this.button3.TabIndex = 15;
+            this.button3.Text = "Stop";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -451,6 +467,7 @@ namespace OddyseyUI
         private System.Windows.Forms.Label ArtistSortLabel;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
 

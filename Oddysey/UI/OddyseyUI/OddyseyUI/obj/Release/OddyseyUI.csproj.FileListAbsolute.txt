@@ -1,0 +1,11 @@
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Release\OddyseyUI.exe.config
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Release\OddyseyUI.exe
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Release\OddyseyUI.pdb
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Release\Interop.WMPLib.dll
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Release\OddyseyUI.csproj.ResolveComReference.cache
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Release\OddyseyUI.Form1.resources
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Release\OddyseyUI.Properties.Resources.resources
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Release\OddyseyUI.csproj.GenerateResource.cache
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Release\OddyseyUI.csproj.CoreCompileInputs.cache
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Release\OddyseyUI.exe
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Release\OddyseyUI.pdb

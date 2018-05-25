@@ -9,6 +9,13 @@ namespace OddyseyUI
     class Client
     {
         Socket clientSocket;
+        WMPLib.WindowsMediaPlayer Player;
+        Boolean Playing;
+
+        public Client ()
+        {
+            Player = new WMPLib.WindowsMediaPlayer();
+        }
 
         public void SendMessage(String message, String OPCode)
         {
@@ -57,6 +64,29 @@ namespace OddyseyUI
                 // Create a file to write to.
                 File.WriteAllText(path, message);
             }
+        }
+
+        public void Play(AudioFile audio)
+        {
+            if (!Playing)
+            {
+                Playing = true;
+                string url = @"Temp\" + audio.Name + "-" + audio.Author + ".mp3";
+                if (!File.Exists(url))
+                {
+                    File.WriteAllBytes(url, Convert.FromBase64String(audio.Data));
+                }
+                Player.URL = url;
+                Player.controls.play();
+            }
+            
+        }
+
+        public void Stop()
+        {
+            Playing = false;
+            Player.URL = null;
+            Player.controls.stop();
         }
 
     }

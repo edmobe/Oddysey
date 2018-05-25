@@ -34,7 +34,16 @@ namespace OddyseyUI
 
         private void Play_Click(object sender, EventArgs e)
         {
-            //Reproduce la cancion
+            // Recordar verificar si la canción ya existe
+            XmlMessage m1 = new XmlMessage();
+            AudioFile audio = new AudioFile();
+            audio.SetMainParameters("Macarena", "Los del Rio", "120");
+            audio.Data = Convert.ToBase64String(File.ReadAllBytes("macarena.mp3"));
+
+            c1.Play(audio);
+            //Console.WriteLine(audio.Data);
+            //String toSend = m1.GetAddSongXML(audio);
+            //c1.SendMessage(toSend, "001");
         }
 
         private void Equalizer_Click(object sender, EventArgs e)
@@ -49,14 +58,28 @@ namespace OddyseyUI
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            // Recordar verificar si la canción ya existe
-            XmlMessage m1 = new XmlMessage();
-            AudioFile audio = new AudioFile();
-            audio.SetMainParameters("Macarena", "Los del Rio", "120");
-            audio.Data = Convert.ToBase64String(File.ReadAllBytes("macarena.mp3"));
-            Console.WriteLine(audio.Data);
-            String toSend = m1.GetAddSongXML(audio);
-            c1.SendMessage(toSend, "001");
+
+            OpenFileDialog Open = new OpenFileDialog();
+            Open.Filter = "mp3 Files (*.mp3) | *.mp3";
+
+            
+            if (Open.ShowDialog() == DialogResult.OK) // Sends the song
+            {
+                string fileName = Open.FileName;
+                // Recordar verificar si la canción ya existe
+                XmlMessage m1 = new XmlMessage();
+                AudioFile audio = new AudioFile();
+                Form2 f2 = new Form2();
+                f2.ShowDialog();
+                audio.SetMainParameters(f2.name, f2.author, "120");
+                audio.Data = Convert.ToBase64String(File.ReadAllBytes(fileName));
+                String toSend = m1.GetAddSongXML(audio);
+                c1.SendMessage(toSend, "001");
+            }
+
+            // c1.Play(audio);
+            //Console.WriteLine(audio.Data);
+
         }
 
         private void UserLabel_Click(object sender, EventArgs e)
@@ -102,5 +125,43 @@ namespace OddyseyUI
         {
             
         }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            System.Text.StringBuilder messageBoxCS = new System.Text.StringBuilder();
+            messageBoxCS.AppendFormat("{0} = {1}", "CloseReason", e.CloseReason);
+            messageBoxCS.AppendLine();
+            messageBoxCS.AppendFormat("{0} = {1}", "Cancel", e.Cancel);
+            messageBoxCS.AppendLine();
+            MessageBox.Show(messageBoxCS.ToString(), "FormClosing Event");
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            c1.Stop();
+        }
+
+        /*
+        private void form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {   // User clicked 'X' button
+                string[] filePaths = Directory.GetFiles(@"Temp\");
+                foreach (string filePath in filePaths)
+                    File.Delete(filePath);
+            }
+        }
+        */
     }
 }
