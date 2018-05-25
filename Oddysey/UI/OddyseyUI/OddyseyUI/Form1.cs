@@ -169,6 +169,29 @@ namespace OddyseyUI
             login.Show();
         }
 
+
+
+        //PlayButton
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            // Recordar verificar si la canción ya existe
+            XmlMessage m1 = new XmlMessage();
+            AudioFile audio = new AudioFile();
+            audio.SetMainParameters("Macarena", "Los del Rio", "120");
+            audio.Data = Convert.ToBase64String(File.ReadAllBytes("macarena.mp3"));
+
+            c1.Play(audio);
+            //Console.WriteLine(audio.Data);
+            //String toSend = m1.GetAddSongXML(audio);
+            //c1.SendMessage(toSend, "001");
+        }
+
+        //Stop button
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            c1.Stop();
+        }
+
         /*
         private void form_FormClosing(object sender, FormClosingEventArgs e)
         {

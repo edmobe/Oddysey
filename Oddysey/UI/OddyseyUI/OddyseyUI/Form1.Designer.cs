@@ -54,15 +54,19 @@ namespace OddyseyUI
             this.ArtistLabel = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.NowPlaying = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Equalizer = new System.Windows.Forms.Button();
             this.Play = new System.Windows.Forms.Button();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.Stop = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Stop)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -180,7 +184,7 @@ namespace OddyseyUI
             this.LoggedLabel.Click += new System.EventHandler(this.LoggedLabel_Click);
             // 
             // UserLabel
-            // 
+            
             this.UserLabel.AutoSize = true;
             this.UserLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.UserLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -192,6 +196,7 @@ namespace OddyseyUI
             this.UserLabel.TabIndex = 1;
             this.UserLabel.Text = "Offline";
             this.UserLabel.Click += new System.EventHandler(this.UserLabel_Click);
+            
             // 
             // FriendList
             // 
@@ -283,13 +288,15 @@ namespace OddyseyUI
             // 
             this.panel5.BackColor = System.Drawing.Color.Gray;
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel5.Controls.Add(this.pictureBox3);
+            this.panel5.Controls.Add(this.pictureBox2);
             this.panel5.Controls.Add(this.Volume);
             this.panel5.Controls.Add(this.PlayTracker);
+            this.panel5.Controls.Add(this.Stop);
             this.panel5.Controls.Add(this.button3);
             this.panel5.Controls.Add(this.ArtistLabel);
             this.panel5.Controls.Add(this.label6);
             this.panel5.Controls.Add(this.NowPlaying);
-            this.panel5.Controls.Add(this.pictureBox1);
             this.panel5.Controls.Add(this.Equalizer);
             this.panel5.Controls.Add(this.Play);
             this.panel5.Location = new System.Drawing.Point(0, 660);
@@ -393,14 +400,6 @@ namespace OddyseyUI
             this.NowPlaying.Text = "NOW PLAYING:";
             this.NowPlaying.Click += new System.EventHandler(this.NowPlaying_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(7, 24);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 98);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
             // Equalizer
             // 
             this.Equalizer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
@@ -427,6 +426,36 @@ namespace OddyseyUI
             this.Play.UseVisualStyleBackColor = false;
             this.Play.Click += new System.EventHandler(this.Play_Click);
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Location = new System.Drawing.Point(10, 16);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(97, 105);
+            this.pictureBox3.TabIndex = 19;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::OddyseyUI.Properties.Resources.Play;
+            this.pictureBox2.Location = new System.Drawing.Point(493, 4);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(36, 36);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 18;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // Stop
+            // 
+            this.Stop.Image = global::OddyseyUI.Properties.Resources.Stop11;
+            this.Stop.Location = new System.Drawing.Point(571, 4);
+            this.Stop.Name = "Stop";
+            this.Stop.Size = new System.Drawing.Size(36, 36);
+            this.Stop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Stop.TabIndex = 3;
+            this.Stop.TabStop = false;
+            this.Stop.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -449,7 +478,9 @@ namespace OddyseyUI
             this.panel3.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Stop)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -468,7 +499,7 @@ namespace OddyseyUI
         private System.Windows.Forms.Button Equalizer;
         private System.Windows.Forms.Button Play;
         private System.Windows.Forms.VScrollBar vScrollBar2;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox Stop;
         private System.Windows.Forms.Label UserLabel;
         private System.Windows.Forms.Label NotiLabel;
         private System.Windows.Forms.Label SongLabel;
@@ -484,6 +515,8 @@ namespace OddyseyUI
         private System.Windows.Forms.Button button3;
         private XComponent.SliderBar.MACTrackBar PlayTracker;
         private XComponent.SliderBar.MACTrackBar Volume;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 

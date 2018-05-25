@@ -20,15 +20,22 @@ namespace OddyseyUI
             InitializeComponent();
         }
 
+        //Log in Button
         private void button1_Click(object sender, EventArgs e)
         {
             String user = LogUsername.Text;
             String passw = LogPassword.Text;
             //Validation process with the given data.
-
+            if (user == "1")
+            {
+                var result = MessageBox.Show("Please enter your username");// message to ask to fill in the blanks
+            }
             //Once Validated
-            form1.ChangeLabel(user);
-            this.Close();
+            else
+            {
+                form1.ChangeLabel(user);
+                this.Close();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
