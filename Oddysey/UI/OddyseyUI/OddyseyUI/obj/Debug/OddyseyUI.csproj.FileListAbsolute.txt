@@ -11,3 +11,22 @@ D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Re
 D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\Interop.WMPLib.dll
 D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.csproj.ResolveComReference.cache
 D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.Form2.resources
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\OddyseyUI.exe.config
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\OddyseyUI.exe
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\OddyseyUI.pdb
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.csprojAssemblyReference.cache
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\Interop.WMPLib.dll
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.csproj.ResolveComReference.cache
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.Form1.resources
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.Form2.resources
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.Properties.Resources.resources
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.csproj.GenerateResource.cache
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.csproj.CoreCompileInputs.cache
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.exe
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.pdb
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\MACTrackBarLib.dll
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.Form3.resources
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.csproj.CopyComplete
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\MACTrackBarLib.dll
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.Form3.resources
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.csproj.CopyComplete
