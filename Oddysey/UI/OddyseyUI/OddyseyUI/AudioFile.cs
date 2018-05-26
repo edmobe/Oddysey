@@ -15,11 +15,16 @@ namespace OddyseyUI
         public String Score { get; set; }
         public String Data { get; set; }
 
-        public void SetMainParameters(String name, String author, String time)
+        public void SetMainParameters(String name, String author)
         {
             Name = name;
             Author = author;
-            Time = time;
+        }
+
+        public void GetData()
+        {
+            string path = @"Temp\" + Name + "-" + Author;
+            Data = Convert.ToBase64String(File.ReadAllBytes(@"Temp\" + Name + "-" + Author + ".mp3"));
         }
     }
 }

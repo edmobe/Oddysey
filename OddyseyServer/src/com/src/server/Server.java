@@ -44,7 +44,8 @@ import org.xml.sax.InputSource;
  */
 public class Server extends Thread{
 	
-	private String opCode;
+	private static String opCode;
+	private static String opCodeMessage;
 	
 	/**
 	 * Runs the Socket loop.
@@ -68,8 +69,11 @@ public class Server extends Thread{
 		        while ((nRead = is.read(data, 0, data.length)) != -1) {
 			          buffer.write(data, 0, nRead);
 		        }
-		        opCode = buffer.toString("UTF-8");
-		        System.out.println("OPCode: " + opCode);
+		        String[] firstMessage = buffer.toString("UTF-8").split("/");
+		        opCode = firstMessage[0];
+		        opCodeMessage = firstMessage[1]; // Message attached to the OPCode (needs reply)
+		        
+		        System.out.println("OPCode: " + opCode + ". First message: " + opCodeMessage);
 		        
 		        
 		        // Re-open (literally the one and only way I found to make this work)
@@ -86,11 +90,10 @@ public class Server extends Thread{
 		        while ((nRead = is.read(data, 0, data.length)) != -1) {
 		          buffer.write(data, 0, nRead);
 		        }
-		        String received = buffer.toString("UTF-8");
+
+		        String received = buffer.toString("UTF-8"); // Message for server usage (does not need reply)
 		        
-		        receive(received, opCode);
-		        System.out.println("Received song!");
-		        
+		        receive(received, opCode);		        
 		        
 				socket.close();				
 			}
@@ -108,10 +111,15 @@ public class Server extends Thread{
 	 * @throws IOException
 	 */
 	private void reply(OutputStream os, String opCode) throws UnsupportedEncodingException, IOException {
+		String toSend = "OPCode not defined";
 		if (opCode.equals("001")) { // Add song
-			String toSend = "Got the OPCode " + opCode + " (add song).";			
-			os.write(toSend.getBytes("UTF-8"));
+			toSend = "Got the OPCode " + opCode + " (add song).";			
+		} else if(opCode.equals("002")) { // Send list of songs
+			String test1 = "Macarena\\Los del Rio\\110\\5\\One\\Metallica\\550\\5";
+			String test2 = "Macarena\\Los del Rio\\110\\5\\One\\Metallica\\550\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5";
+			toSend = test2; // Aquí debería convertir la lista (o el árbol o lo que sea) de canciones a un String en formato Xml.
 		}
+		os.write(toSend.getBytes("UTF-8"));
 	}
 	
 	/**
@@ -129,7 +137,7 @@ public class Server extends Thread{
 			}
 	        System.out.println("Saved song!");
 			// Aquí va el algoritmo para agregar received al JSON de canciones
-		}
+		} 
 	}
 	
 	/*

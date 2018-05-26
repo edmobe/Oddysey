@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -8,16 +9,17 @@ namespace OddyseyUI
 {
     class Client
     {
-        Socket clientSocket;
-        WMPLib.WindowsMediaPlayer Player;
-        Boolean Playing;
+        private Socket clientSocket;
+        private WMPLib.WindowsMediaPlayer Player;
+        private Boolean Playing;
+        private LinkedList<string[]> SongList = new LinkedList<string[]>();
 
         public Client ()
         {
             Player = new WMPLib.WindowsMediaPlayer();
         }
 
-        public void SendMessage(String message, String OPCode)
+        public String SendMessage(String message, String OPCode)
         {
 
             // Testing
@@ -47,10 +49,11 @@ namespace OddyseyUI
             clientSocket.Receive(replyBytes);
             string reply = System.Text.Encoding.UTF8.GetString(replyBytes);
             string finalReply = reply.Replace("\0", "");
-            MessageBox.Show("Reply: " + finalReply);
-            
+
             clientSocket.Close();
 
+            return finalReply;
+            
         }
 
         // Testing
@@ -68,18 +71,23 @@ namespace OddyseyUI
 
         public void Play(AudioFile audio)
         {
-            if (!Playing)
+            if (Playing)
             {
-                Playing = true;
-                string url = @"Temp\" + audio.Name + "-" + audio.Author + ".mp3";
-                if (!File.Exists(url))
-                {
-                    File.WriteAllBytes(url, Convert.FromBase64String(audio.Data));
-                }
-                Player.URL = url;
-                Player.controls.play();
+                Stop();
             }
-            
+            else
+            {
+                Playing = false;
+            }
+
+            string url = @"Temp\" + audio.Name + "-" + audio.Author + ".mp3";
+            if (!File.Exists(url))
+            {
+                File.WriteAllBytes(url, Convert.FromBase64String(audio.Data));
+            }
+            Player.URL = url;
+            Player.controls.play();
+
         }
 
         public void Stop()
@@ -87,6 +95,40 @@ namespace OddyseyUI
             Playing = false;
             Player.URL = null;
             Player.controls.stop();
+        }
+
+        public void AddSong(string fileName)
+        {
+            // Recordar verificar si la canción ya existe
+            XmlMessage m1 = new XmlMessage();
+            AudioFile audio = new AudioFile();
+            Form2 f2 = new Form2();
+            f2.ShowDialog();
+            audio.SetMainParameters(f2.name, f2.author);
+            audio.Data = Convert.ToBase64String(File.ReadAllBytes(fileName));
+            string toSend = m1.GetAddSongXML(audio);
+            SendMessage(toSend, "001/null");
+            UpdateSongs();
+        }
+
+        public void UpdateSongs()
+        {
+            string songMetadataXml = SendMessage("", "002/null");
+            // Aquí se recibe el XML con los nombres de todas las canciones (falta)
+            // Aquí se deserializa el XML (falta)
+
+            // Una prueba del código:
+            string[] breakApart = songMetadataXml.Split('\\');
+            for (int i = 0; i < breakApart.Length; i += 4)
+            {
+                string[] song = { breakApart[i], breakApart[i + 1], breakApart[i + 2], breakApart[i + 3] };
+                SongList.AddLast(song);
+            }
+        }
+
+        public LinkedList<String[]> GetSongList()
+        {
+            return SongList;
         }
 
     }

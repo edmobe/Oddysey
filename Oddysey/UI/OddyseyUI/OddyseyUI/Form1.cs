@@ -20,11 +20,16 @@ namespace OddyseyUI
         {
             Console.WriteLine("Hello world!");
             c1 = new Client();
+            c1.UpdateSongs();
             InitializeComponent();
+            for (int i = 0; i < c1.GetSongList().Count; i++)
+            {
+                string[] song = c1.GetSongList().ElementAt(i); // En lugar de 0 es i
+                dataGridView1.Rows.Add(song[0], song[1], song[2], song[3]);
+            }         
+
+
         }
-
-
-        
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
@@ -34,12 +39,14 @@ namespace OddyseyUI
 
         private void Play_Click(object sender, EventArgs e)
         {
-            // Recordar verificar si la canción ya existe
+            // Validar que la canción existe no es necesario
             XmlMessage m1 = new XmlMessage();
             AudioFile audio = new AudioFile();
-            audio.SetMainParameters("Macarena", "Los del Rio", "120");
-            audio.Data = Convert.ToBase64String(File.ReadAllBytes("macarena.mp3"));
-
+            DataGridViewCellCollection currentRow = dataGridView1.CurrentRow.Cells;
+            string name = currentRow[0].Value.ToString();
+            string author = currentRow[1].Value.ToString();
+            audio.SetMainParameters(name, author);
+            audio.GetData();
             c1.Play(audio);
             //Console.WriteLine(audio.Data);
             //String toSend = m1.GetAddSongXML(audio);
@@ -66,20 +73,11 @@ namespace OddyseyUI
             if (Open.ShowDialog() == DialogResult.OK) // Sends the song
             {
                 string fileName = Open.FileName;
-                // Recordar verificar si la canción ya existe
-                XmlMessage m1 = new XmlMessage();
-                AudioFile audio = new AudioFile();
-                Form2 f2 = new Form2();
-                f2.ShowDialog();
-                audio.SetMainParameters(f2.name, f2.author, "120");
-                audio.Data = Convert.ToBase64String(File.ReadAllBytes(fileName));
-                String toSend = m1.GetAddSongXML(audio);
-                c1.SendMessage(toSend, "001");
+                c1.AddSong(fileName);
             }
 
             // c1.Play(audio);
             //Console.WriteLine(audio.Data);
-
         }
 
         private void UserLabel_Click(object sender, EventArgs e)
@@ -97,8 +95,7 @@ namespace OddyseyUI
 
         private void ArtistSortLabel_Click(object sender, EventArgs e)
         {
-            //Used to sort the songs by Artist's Name
-            ArtistSortLabel.Text = "SORTED";
+            
         }
 
         private void AlbumLabel_Click(object sender, EventArgs e)
@@ -129,7 +126,7 @@ namespace OddyseyUI
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
 
-            System.Text.StringBuilder messageBoxCS = new System.Text.StringBuilder();
+            StringBuilder messageBoxCS = new StringBuilder();
             messageBoxCS.AppendFormat("{0} = {1}", "CloseReason", e.CloseReason);
             messageBoxCS.AppendLine();
             messageBoxCS.AppendFormat("{0} = {1}", "Cancel", e.Cancel);
@@ -150,6 +147,21 @@ namespace OddyseyUI
         private void button3_Click_1(object sender, EventArgs e)
         {
             c1.Stop();
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void Form1_Load_1(object sender, EventArgs e)
+        {
+
         }
 
         /*
