@@ -35,6 +35,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.src.main.MainClass;
+
 
 /**
  * Apps server
@@ -42,7 +46,7 @@ import org.xml.sax.InputSource;
  * @author edmobe
  *
  */
-public class Server extends Thread{
+public class Server extends MainClass implements Runnable{
 	
 	private static String opCode;
 	private static String opCodeMessage;
@@ -73,7 +77,7 @@ public class Server extends Thread{
 		        opCode = firstMessage[0];
 		        opCodeMessage = firstMessage[1]; // Message attached to the OPCode (needs reply)
 		        
-		        System.out.println("OPCode: " + opCode + ". First message: " + opCodeMessage);
+		       // System.out.println("OPCode: " + opCode + ". First message: " + opCodeMessage);
 		        
 		        
 		        // Re-open (literally the one and only way I found to make this work)
@@ -91,9 +95,9 @@ public class Server extends Thread{
 		          buffer.write(data, 0, nRead);
 		        }
 
-		        String received = buffer.toString("UTF-8"); // Message for server usage (does not need reply)
+		       // String received = buffer.toString("UTF-8"); // Message for server usage (does not need reply)
 		        
-		        receive(received, opCode);		        
+		        receive(buffer, opCode);		        
 		        
 				socket.close();				
 			}
@@ -124,20 +128,32 @@ public class Server extends Thread{
 	
 	/**
 	 * Decides which operation to with the received input based on the operation code.
-	 * @param received input {@code String}
+	 * @param buffer input {@code String}
 	 * @param opCode operation code
 	 * @throws JAXBException
-	 * @throws FileNotFoundException
+	 * @throws IOException 
+	 * @throws JsonMappingException 
+	 * @throws JsonGenerationException 
 	 */
-	private void receive(String received, String opCode) throws JAXBException, FileNotFoundException {
+	private void receive(ByteArrayOutputStream buffer, String opCode) throws JAXBException, JsonGenerationException, JsonMappingException, IOException {
 		if (opCode.equals("001")) { // Add song
 			// For testing
+			//this.getAM().addAudio(buffer);
 	        try (PrintWriter out = new PrintWriter("Receiving.txt")) {
-			    out.println(received);
+			    out.println(buffer);
+			    
+			    
 			}
+	        
+	        String b = buffer.toString("UTF-8");
+	        this.getAM().addAudio(b);
+	        	
+	        }
+	        
 	        System.out.println("Saved song!");
+	        
 			// Aquí va el algoritmo para agregar received al JSON de canciones
-		} 
+		
 	}
 	
 	/*

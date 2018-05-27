@@ -10,5 +10,6 @@
 	<classpathentry kind="lib" path="dependencies/jackson-module-jaxb-annotations-2.9.5.jar"/>
 	<classpathentry kind="lib" path="dependencies/stax2-api-4.1.jar"/>
 	<classpathentry kind="lib" path="dependencies/woodstox-core-5.1.0.jar"/>
+	<classpathentry kind="lib" path="dependencies/java-json.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

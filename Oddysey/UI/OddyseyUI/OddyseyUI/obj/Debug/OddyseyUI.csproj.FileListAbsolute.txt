@@ -33,3 +33,22 @@ D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Re
 D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\Interop.WMPLib.dll
 D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\AxInterop.WMPLib.dll
 D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\AxInterop.WMPLib.dll
+D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\OddyseyUI.exe.config
+D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\OddyseyUI.exe
+D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\OddyseyUI.pdb
+D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\MACTrackBarLib.dll
+D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\Interop.WMPLib.dll
+D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\AxInterop.WMPLib.dll
+D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.csprojResolveAssemblyReference.cache
+D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\Interop.WMPLib.dll
+D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\AxInterop.WMPLib.dll
+D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.csproj.ResolveComReference.cache
+D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.Form1.resources
+D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.Form2.resources
+D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.Form3.resources
+D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.Properties.Resources.resources
+D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.csproj.GenerateResource.cache
+D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.csproj.CoreCompileInputs.cache
+D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.csproj.CopyComplete
+D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.exe
+D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.pdb

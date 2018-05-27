@@ -17,8 +17,8 @@ public class LogInManager extends MainClass {
 		// Se verifica que el usuario sea unico y luego se crea el user
 		// hay que entrar en el this.getUsers() y revisar todos los nickmanes para
 		// buscar equivalentes
-		User newuser = new User("Allack", "Josue", "Mata", "21", "Metal,Rock", "123456789", "Banners, Ed");
-		this.getMapper().writerWithDefaultPrettyPrinter().writeValue(this.getUsers(), newuser);
+		
+		
 
 	}
 
