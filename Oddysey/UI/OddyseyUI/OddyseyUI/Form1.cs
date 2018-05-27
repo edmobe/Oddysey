@@ -15,12 +15,14 @@ namespace OddyseyUI
     {
 
         Client c1;
+        public Boolean Logd;
 
         public Form1()
         {
             Console.WriteLine("Hello world!");
             c1 = new Client();
             c1.UpdateSongs();
+            Logd = true;
             InitializeComponent();
             for (int i = 0; i < c1.GetSongList().Count; i++)
             {
@@ -28,6 +30,10 @@ namespace OddyseyUI
                 dataGridView1.Rows.Add(song[0], song[1], song[2], song[3]);
             }         
 
+
+        }
+        public void ChangeLabel(String text)
+        {
 
         }
 
@@ -162,6 +168,18 @@ namespace OddyseyUI
         private void Form1_Load_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LoggedLabel_Click(object sender, EventArgs e)
+        {
+            Form3 Login = new Form3(this);
+            Login.Show();
+            
         }
 
         /*
