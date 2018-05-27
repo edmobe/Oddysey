@@ -10,13 +10,12 @@ namespace OddyseyUI
     class Client
     {
         private Socket clientSocket;
-        private WMPLib.WindowsMediaPlayer Player;
-        private Boolean Playing;
-        private LinkedList<string[]> SongList = new LinkedList<string[]>();
+        private List<AudioFile> SongList;
 
         public Client ()
         {
-            Player = new WMPLib.WindowsMediaPlayer();
+            SongList = new List<AudioFile>();
+            UpdateSongs();
         }
 
         public String SendMessage(String message, String OPCode)
@@ -69,34 +68,6 @@ namespace OddyseyUI
             }
         }
 
-        public void Play(AudioFile audio)
-        {
-            if (Playing)
-            {
-                Stop();
-            }
-            else
-            {
-                Playing = false;
-            }
-
-            string url = @"Temp\" + audio.Name + "-" + audio.Author + ".mp3";
-            if (!File.Exists(url))
-            {
-                File.WriteAllBytes(url, Convert.FromBase64String(audio.Data));
-            }
-            Player.URL = url;
-            Player.controls.play();
-
-        }
-
-        public void Stop()
-        {
-            Playing = false;
-            Player.URL = null;
-            Player.controls.stop();
-        }
-
         public void AddSong(string fileName)
         {
             // Recordar verificar si la canción ya existe
@@ -104,7 +75,7 @@ namespace OddyseyUI
             AudioFile audio = new AudioFile();
             Form2 f2 = new Form2();
             f2.ShowDialog();
-            audio.SetMainParameters(f2.name, f2.author);
+            audio.SetMainParameters(f2.name, f2.author, f2.album, f2.score);
             audio.Data = Convert.ToBase64String(File.ReadAllBytes(fileName));
             string toSend = m1.GetAddSongXML(audio);
             SendMessage(toSend, "001/null");
@@ -113,6 +84,7 @@ namespace OddyseyUI
 
         public void UpdateSongs()
         {
+            SongList = new List<AudioFile>();
             string songMetadataXml = SendMessage("", "002/null");
             // Aquí se recibe el XML con los nombres de todas las canciones (falta)
             // Aquí se deserializa el XML (falta)
@@ -122,13 +94,31 @@ namespace OddyseyUI
             for (int i = 0; i < breakApart.Length; i += 4)
             {
                 string[] song = { breakApart[i], breakApart[i + 1], breakApart[i + 2], breakApart[i + 3] };
-                SongList.AddLast(song);
+                AudioFile audio = new AudioFile();
+                audio.SetMainParameters(song[0], song[1], song[2], song[3]);
+                if (!SongList.Contains(audio))
+                {
+                    SongList.Add(audio);
+                }
             }
         }
 
-        public LinkedList<String[]> GetSongList()
+        public List<AudioFile> GetSongList()
         {
             return SongList;
+        }
+
+        public AudioFile GetAudio(string name, string author)
+        {
+            for (int i = 0; i < SongList.Count; i++)
+            {
+                var song = SongList[i];
+                if(song.Name == name && song.Author == author)
+                {
+                    return song;
+                }
+            }
+            return null;
         }
 
     }

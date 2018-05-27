@@ -14,20 +14,24 @@ namespace OddyseyUI
     public partial class Form1 : Form
     {
 
-        Client c1;
+        Client client;
         public Boolean Logd;
+        public Boolean Paused;
+        public AudioFile Playing;
 
         public Form1()
         {
             Console.WriteLine("Hello world!");
-            c1 = new Client();
-            c1.UpdateSongs();
+            client = new Client();
+            client.UpdateSongs();
+            client.UpdateSongs();
             Logd = true;
+            Playing = new AudioFile();
             InitializeComponent();
-            for (int i = 0; i < c1.GetSongList().Count; i++)
+            for (int i = 0; i < client.GetSongList().Count; i++)
             {
-                string[] song = c1.GetSongList().ElementAt(i); // En lugar de 0 es i
-                dataGridView1.Rows.Add(song[0], song[1], song[2], song[3]);
+                AudioFile song = client.GetSongList()[i]; // En lugar de 0 es i
+                dataGridView1.Rows.Add(song.Name, song.Author, song.Album, song.Score);
             }         
 
 
@@ -43,17 +47,44 @@ namespace OddyseyUI
             
         }
 
-        private void Play_Click(object sender, EventArgs e)
+        private void Play_Click(object sender, EventArgs e) // If play button was pressed
         {
-            // Validar que la canción existe no es necesario
-            XmlMessage m1 = new XmlMessage();
-            AudioFile audio = new AudioFile();
-            DataGridViewCellCollection currentRow = dataGridView1.CurrentRow.Cells;
-            string name = currentRow[0].Value.ToString();
-            string author = currentRow[1].Value.ToString();
-            audio.SetMainParameters(name, author);
-            audio.GetData();
-            c1.Play(audio);
+            if (!Paused) // If the music is playing
+            {
+                axWindowsMediaPlayer1.Ctlcontrols.pause(); // Pauses the song
+                Paused = true; // Is paused
+                Play.Text = "Play";
+            }
+            else
+            {
+                DataGridViewCellCollection currentRow = dataGridView1.CurrentRow.Cells; // Get the selected song information
+                string name = currentRow[0].Value.ToString(); // Name of the song
+                string author = currentRow[1].Value.ToString(); // Author of the song
+                AudioFile audio = client.GetAudio(name, author); // Get the AudioFile object from the audio list available in the client
+                if (Playing == null || !Playing.Equals(audio)) // If no song is being played or the selected song changed
+                {
+                    Playing = audio;
+                    string url = @"Temp\" + Playing.Name + "-" + Playing.Author + ".mp3"; // The song URL
+                    if (!File.Exists(url)) // If the song has not been downloaded
+                    {
+                        File.WriteAllBytes(url, Convert.FromBase64String(Playing.Data)); // Downloads the song
+                    }
+                    axWindowsMediaPlayer1.URL = url; // Adds the song to the player
+                    axWindowsMediaPlayer1.Ctlcontrols.play(); // Plays the song
+                    Paused = false; // Is not paused
+                    Play.Text = "Pause";
+                }
+                else // If the song has not changed
+                {
+                    axWindowsMediaPlayer1.Ctlcontrols.play(); // Plays the song
+                    Paused = false; // Is not paused
+                    Play.Text = "Pause";
+                }
+            }
+
+            
+            
+            
             //Console.WriteLine(audio.Data);
             //String toSend = m1.GetAddSongXML(audio);
             //c1.SendMessage(toSend, "001");
@@ -79,7 +110,7 @@ namespace OddyseyUI
             if (Open.ShowDialog() == DialogResult.OK) // Sends the song
             {
                 string fileName = Open.FileName;
-                c1.AddSong(fileName);
+                client.AddSong(fileName);
             }
 
             // c1.Play(audio);
@@ -152,7 +183,10 @@ namespace OddyseyUI
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            c1.Stop();
+            axWindowsMediaPlayer1.Ctlcontrols.stop();
+            Playing = null;
+            Paused = false;
+            Play.Text = "Play";
         }
 
         private void button4_Click_1(object sender, EventArgs e)
@@ -180,6 +214,17 @@ namespace OddyseyUI
             Form3 Login = new Form3(this);
             Login.Show();
             
+        }
+
+        private void axWindowsMediaPlayer1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Paused = true;
+            axWindowsMediaPlayer1.Ctlcontrols.pause();
         }
 
         /*

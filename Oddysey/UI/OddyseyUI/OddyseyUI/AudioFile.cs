@@ -6,19 +6,21 @@ namespace OddyseyUI
 {
     public class AudioFile
     {
-        public String Name { get; set; }
-        public String Author { get; set; }
-        public String Album { get; set; }
-        public String Year { get; set; }
-        public String Lyrics { get; set; }
-        public String Time { get; set; }
-        public String Score { get; set; }
-        public String Data { get; set; }
+        public string Name { get; set; }
+        public string Author { get; set; }
+        public string Album { get; set; }
+        public string Year { get; set; }
+        public string Lyrics { get; set; }
+        public string Time { get; set; }
+        public string Score { get; set; }
+        public string Data { get; set; }
 
-        public void SetMainParameters(String name, String author)
+        public void SetMainParameters(string name, string author, string album, string score)
         {
             Name = name;
             Author = author;
+            Album = album;
+            Score = score;
         }
 
         public void GetData()

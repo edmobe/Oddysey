@@ -15,6 +15,8 @@ namespace OddyseyUI
 
         public string name;
         public string author;
+        public string album;
+        public string score;
 
         public Form2()
         {
@@ -50,6 +52,8 @@ namespace OddyseyUI
             {
                 name = textBox1.Text;
                 author = textBox2.Text;
+                album = textBox3.Text;
+                score = textBox4.Text;
                 Close();
             }
 

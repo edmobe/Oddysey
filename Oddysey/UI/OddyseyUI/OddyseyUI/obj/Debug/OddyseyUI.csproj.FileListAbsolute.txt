@@ -30,3 +30,6 @@ C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debu
 D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\MACTrackBarLib.dll
 D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.Form3.resources
 D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.csproj.CopyComplete
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\Interop.WMPLib.dll
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\AxInterop.WMPLib.dll
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\AxInterop.WMPLib.dll
