@@ -5,28 +5,27 @@ using System.Xml.Serialization;
 
 namespace OddyseyUI
 {
+    [XmlRoot("XmlMessage")]
     public class XmlMessage
     {
-        public String OpCode { get; set; }
-        public OperationData OpData { get; set; }
+        [XmlElement("OperationData")]
+        public OperationData OperationData { get; set; }
 
         public XmlMessage()
         {
-            OpData = new OperationData();
+            OperationData = new OperationData();
         }
 
         public String GetAddSongXML(AudioFile audio) // from https://stackoverflow.com/questions/1772004/how-can-i-make-the-xmlserializer-only-serialize-plain-xml
         {
-            OpCode = "001";
-            OpData.Audio = audio;
+            OperationData.SongToAdd = audio;
             return GetXMLString();
         }
 
         public String GetDeleteSongXML(String nameToDel, String authorToDel)
         {
-            OpCode = "002";
-            OpData.NameToDel = nameToDel;
-            OpData.AuthorToDel = authorToDel;
+            OperationData.NameToDel = nameToDel;
+            OperationData.AuthorToDel = authorToDel;
             return GetXMLString();
         }
 
@@ -37,6 +36,7 @@ namespace OddyseyUI
             var settings = new XmlWriterSettings
             {
                 Indent = true,
+                OmitXmlDeclaration = true,
             };
             using (var stream = new StringWriter())
             using (var writer = XmlWriter.Create(stream, settings))

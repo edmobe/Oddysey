@@ -21,9 +21,7 @@ namespace OddyseyUI
 
         public Form1()
         {
-            Console.WriteLine("Hello world!");
             client = new Client();
-            client.UpdateSongs();
             client.UpdateSongs();
             Logd = true;
             Playing = new AudioFile();
@@ -67,7 +65,7 @@ namespace OddyseyUI
                     string url = @"Temp\" + Playing.Name + "-" + Playing.Author + ".mp3"; // The song URL
                     if (!File.Exists(url)) // If the song has not been downloaded
                     {
-                        File.WriteAllBytes(url, Convert.FromBase64String(Playing.Data)); // Downloads the song
+                        client.DownloadSong(audio.Name, audio.Author); // Downloads the song
                     }
                     axWindowsMediaPlayer1.URL = url; // Adds the song to the player
                     axWindowsMediaPlayer1.Ctlcontrols.play(); // Plays the song
@@ -81,10 +79,6 @@ namespace OddyseyUI
                     Play.Text = "Pause";
                 }
             }
-
-            
-            
-            
             //Console.WriteLine(audio.Data);
             //String toSend = m1.GetAddSongXML(audio);
             //c1.SendMessage(toSend, "001");
@@ -111,6 +105,13 @@ namespace OddyseyUI
             {
                 string fileName = Open.FileName;
                 client.AddSong(fileName);
+                dataGridView1.Rows.Clear();
+                dataGridView1.DataSource = null;
+                for (int i = 0; i < client.GetSongList().Count; i++)
+                {
+                    AudioFile song = client.GetSongList()[i]; // En lugar de 0 es i
+                    dataGridView1.Rows.Add(song.Name, song.Author, song.Album, song.Score);
+                }
             }
 
             // c1.Play(audio);

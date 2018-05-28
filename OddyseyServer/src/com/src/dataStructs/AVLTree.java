@@ -4,9 +4,6 @@ package com.src.dataStructs;
 public class AVLTree {
 
 	private AVLNode root;
-	
-	
-
 
 	public AVLTree() {
 		this.root = null;

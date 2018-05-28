@@ -9,7 +9,6 @@ public class AVLNode {
 	
 	
 	public AVLNode(String data) {
-	
 		this.data = data;
 		this.fe = 0;
 		this.leftNode = null;

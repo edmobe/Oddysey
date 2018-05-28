@@ -5,19 +5,23 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.StringReader;
+import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.stream.StreamResult;
@@ -30,6 +34,9 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.XML;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -37,6 +44,14 @@ import org.xml.sax.InputSource;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.src.audio.AudioFile;
+import com.src.audio.AudioManager;
+import com.src.dataStructs.AVLTree;
+import com.src.dataStructs.BTree;
+import com.src.dataStructs.SplayTree;
+import com.src.login.LogInManager;
 import com.src.main.MainClass;
 
 
@@ -46,10 +61,19 @@ import com.src.main.MainClass;
  * @author edmobe
  *
  */
-public class Server extends MainClass implements Runnable{
+public class Server implements Runnable{
 	
 	private static String opCode;
 	private static String opCodeMessage;
+	private final ObjectMapper mapper;
+	//private static LogInManager lim;
+	private static AudioManager audioManager;
+	
+	public Server() {
+		mapper = new ObjectMapper();
+		// lim = new LogInManager();
+		audioManager = new AudioManager();
+	}
 	
 	/**
 	 * Runs the Socket loop.
@@ -60,8 +84,7 @@ public class Server extends MainClass implements Runnable{
 			@SuppressWarnings("resource")
 			ServerSocket serverSocket = new ServerSocket(6000, 10); // INVESTIGAR SIGNIFICADO DE BACKLOG
 			
-			while (true) {
-				
+			while (true) {				
 				Socket socket = serverSocket.accept();
 				InputStream is = socket.getInputStream();
 				OutputStream os = socket.getOutputStream();
@@ -73,7 +96,8 @@ public class Server extends MainClass implements Runnable{
 		        while ((nRead = is.read(data, 0, data.length)) != -1) {
 			          buffer.write(data, 0, nRead);
 		        }
-		        String[] firstMessage = buffer.toString("UTF-8").split("/");
+		        String message = buffer.toString("UTF-8");
+		        String[] firstMessage = message.split("/");
 		        opCode = firstMessage[0];
 		        opCodeMessage = firstMessage[1]; // Message attached to the OPCode (needs reply)
 		        
@@ -86,8 +110,8 @@ public class Server extends MainClass implements Runnable{
 		        os = socket.getOutputStream();
 		        
 		        // Sending message based on OPCode
-		        reply(os, opCode);		        
-		        
+		        reply(os, opCode, opCodeMessage);	
+
 		        // Getting message
 		        buffer = new ByteArrayOutputStream();
 		        data = new byte[16384];
@@ -97,7 +121,7 @@ public class Server extends MainClass implements Runnable{
 
 		       // String received = buffer.toString("UTF-8"); // Message for server usage (does not need reply)
 		        
-		        receive(buffer, opCode);		        
+		        receive(buffer, opCode);		       
 		        
 				socket.close();				
 			}
@@ -114,14 +138,14 @@ public class Server extends MainClass implements Runnable{
 	 * @throws UnsupportedEncodingException
 	 * @throws IOException
 	 */
-	private void reply(OutputStream os, String opCode) throws UnsupportedEncodingException, IOException {
+	private void reply(OutputStream os, String opCode, String opCodeMessage) throws UnsupportedEncodingException, IOException {
 		String toSend = "OPCode not defined";
 		if (opCode.equals("001")) { // Add song
-			toSend = "Got the OPCode " + opCode + " (add song).";			
-		} else if(opCode.equals("002")) { // Send list of songs
-			String test1 = "Macarena\\Los del Rio\\110\\5\\One\\Metallica\\550\\5";
-			String test2 = "Macarena\\Los del Rio\\110\\5\\One\\Metallica\\...And Justice for All\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5\\RandomTitle\\RandomArtist\\RandomAlbum\\5";
-			toSend = test2; // Aquí debería convertir la lista (o el árbol o lo que sea) de canciones a un String en formato Xml.
+			toSend = "Got the OPCode " + opCode + " (add song).";
+		} else if (opCode.equals("002")) { // Send list of songs
+			toSend = audioManager.getSongsMainDataXmlString();
+		} else if (opCode.equals("003")) { // Send the song data
+			toSend = audioManager.getSongDataXmlString(opCodeMessage);
 		}
 		os.write(toSend.getBytes("UTF-8"));
 	}
@@ -136,25 +160,45 @@ public class Server extends MainClass implements Runnable{
 	 * @throws JsonGenerationException 
 	 */
 	private void receive(ByteArrayOutputStream buffer, String opCode) throws JAXBException, JsonGenerationException, JsonMappingException, IOException {
+		
 		if (opCode.equals("001")) { // Add song
-			// For testing
-			//this.getAM().addAudio(buffer);
+			// For testing			
+			String xmlString = buffer.toString("UTF-8");
+
+			XmlMessage message = getXmlMessage(xmlString);
+			
 	        try (PrintWriter out = new PrintWriter("Receiving.txt")) {
 			    out.println(buffer);
-			    
-			    
 			}
 	        
-	        String b = buffer.toString("UTF-8");
-	        this.getAM().addAudio(b);
+	        AudioFile audio = message.operationData.songToAdd;
+	        audioManager.addSong(audio);
+	        
+	        System.out.println("Saved song: " + audio.name + audio.author + audio.album + audio.score);
 	        	
-	        }
-	        
-	        System.out.println("Saved song!");
-	        
-			// Aquí va el algoritmo para agregar received al JSON de canciones
+		} else if (opCode.equals("002")) {
+			System.out.println("Sent songs data!");
+		}
 		
 	}
+	
+	public XmlMessage getXmlMessage(String xmlString) throws JAXBException {
+        JAXBContext jaxbContext = JAXBContext.newInstance(XmlMessage.class);
+        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        StringReader reader = new StringReader(xmlString);        
+        return (XmlMessage) unmarshaller.unmarshal(reader);
+	}
+	
+	/*
+	public String getXmlString(XmlMessage xml) throws JAXBException {
+		JAXBContext jaxbContext = JAXBContext.newInstance(XmlMessage.class);
+        Marshaller marshaller = jaxbContext.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        StringWriter writer = new StringWriter();
+        marshaller.marshal(xml, writer);
+        return writer.toString();
+	}
+	*/
 	
 	/*
 	private String unmarshall(String message) throws JAXBException {

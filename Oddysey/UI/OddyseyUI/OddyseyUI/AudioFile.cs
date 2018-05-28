@@ -1,9 +1,11 @@
 ﻿using System;
 using System.IO;
 using System.Media;
+using System.Xml.Serialization;
 
 namespace OddyseyUI
 {
+    [XmlRoot("AudioFile")]
     public class AudioFile
     {
         public string Name { get; set; }

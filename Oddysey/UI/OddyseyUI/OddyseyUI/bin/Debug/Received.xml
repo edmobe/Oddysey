@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<XmlMessage>
+    <OperationData>
+        <AudioFiles>
+            <AudioFile>
+                <Name>One</Name>
+                <Author>Metallica</Author>
+                <Album>...And Justice for All</Album>
+            </AudioFile>
+            <AudioFile>
+                <Name>Macarena</Name>
+                <Author>Los del Rio</Author>
+                <Album>Desconocido</Album>
+            </AudioFile>
+            <AudioFile>
+                <Name>Nuvole Biance</Name>
+                <Author>Ludovico Einaudi</Author>
+                <Album>Desconocido</Album>
+            </AudioFile>
+            <AudioFile>
+                <Name>Toxicity</Name>
+                <Author>SOD</Author>
+                <Album>Toxicity</Album>
+            </AudioFile>
+        </AudioFiles>
+    </OperationData>
+</XmlMessage>

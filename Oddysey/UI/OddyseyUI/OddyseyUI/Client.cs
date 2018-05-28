@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
+using System.Threading;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace OddyseyUI
 {
@@ -18,12 +22,8 @@ namespace OddyseyUI
             UpdateSongs();
         }
 
-        public String SendMessage(String message, String OPCode)
+        public String SendMessage(string message, string OPCode)
         {
-
-            // Testing
-            CreateTestFile(message);
-
             // Main parameters
             IPEndPoint serverAddress = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 6000);
             clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -32,40 +32,70 @@ namespace OddyseyUI
             // Sending OPCode
             byte[] toSendCode = System.Text.Encoding.UTF8.GetBytes(OPCode);
             clientSocket.Send(toSendCode);
-
             clientSocket.Close();
 
             // Re-open (literally the one and only way I found to make this work)
+            /*
             clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             clientSocket.Connect(serverAddress);
+
+            // Receiving
+            byte[] replyBytes = new byte[1000];
+            int bytesRead;
+            string reply = "";
+            while ((bytesRead = clientSocket.Receive(replyBytes)) > 0)
+            {
+                reply = reply + System.Text.Encoding.UTF8.GetString(replyBytes);
+            }
 
             // Sending data based on OPCode
             byte[] toSendBytes = System.Text.Encoding.UTF8.GetBytes(message);
             clientSocket.Send(toSendBytes);
 
-            // Receiving
-            byte[] replyBytes = new byte[10000000];
-            clientSocket.Receive(replyBytes);
-            string reply = System.Text.Encoding.UTF8.GetString(replyBytes);
-            string finalReply = reply.Replace("\0", "");
-
             clientSocket.Close();
+            */
 
-            return finalReply;
+            // Create a TcpClient.
+            // Note, for this client to work you need to have a TcpServer 
+            // connected to the same address as specified by the server, port
+            // combination.
+            Int32 port = 6000;
+            TcpClient client = new TcpClient("localhost", port);
+
+            // String to store the response UTF8 representation.
+            String reply = String.Empty;
+
+            using (NetworkStream stream = client.GetStream())
+            {
+                var data = new Byte[256];
+                using (MemoryStream ms = new MemoryStream())
+                {
+
+                    int numBytesRead;
+                    while ((numBytesRead = stream.Read(data, 0, data.Length)) > 0)
+                    {
+                        ms.Write(data, 0, numBytesRead);
+                        if (numBytesRead < 256)
+                        {
+                            break;
+                        }
+                    }
+                    reply = Encoding.UTF8.GetString(ms.ToArray(), 0, (int)ms.Length);
+
+                    byte[] bytesToSend = Encoding.UTF8.GetBytes(message);
+                    stream.Write(bytesToSend, 0, bytesToSend.Length);
+                }
+            }            
+
+            return reply;
             
         }
 
         // Testing
-        public void CreateTestFile(String message)
+        public void CreateTestFile(string message)
         {
             string path = @"Sending.txt";
-
-            // This text is added only once to the file.
-            if (!File.Exists(path))
-            {
-                // Create a file to write to.
-                File.WriteAllText(path, message);
-            }
+            File.WriteAllText(path, message);
         }
 
         public void AddSong(string fileName)
@@ -80,28 +110,40 @@ namespace OddyseyUI
             string toSend = m1.GetAddSongXML(audio);
             SendMessage(toSend, "001/null");
             UpdateSongs();
+
+            // Testing
+            CreateTestFile(toSend);
+
         }
 
         public void UpdateSongs()
         {
             SongList = new List<AudioFile>();
             string songMetadataXml = SendMessage("", "002/null");
-            // Aquí se recibe el XML con los nombres de todas las canciones (falta)
-            // Aquí se deserializa el XML (falta)
 
-            // Una prueba del código:
-            string[] breakApart = songMetadataXml.Split('\\');
-            for (int i = 0; i < breakApart.Length; i += 4)
+            // Testing
+            string path = @"Received.xml";
+            File.WriteAllText(path, songMetadataXml);
+
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(songMetadataXml);
+            XmlNodeList audioFiles = doc.SelectNodes("XmlMessage/OperationData/AudioFiles/AudioFile");
+            XmlSerializer serializer = new XmlSerializer(typeof(AudioFile));
+
+            foreach (XmlNode node in audioFiles)
             {
-                string[] song = { breakApart[i], breakApart[i + 1], breakApart[i + 2], breakApart[i + 3] };
-                AudioFile audio = new AudioFile();
-                audio.SetMainParameters(song[0], song[1], song[2], song[3]);
-                if (!SongList.Contains(audio))
-                {
-                    SongList.Add(audio);
-                }
+                SongList.Add((AudioFile)serializer.Deserialize(new XmlNodeReader(node)));
             }
         }
+
+        public void DownloadSong(string name, string author)
+        {
+            string songData = SendMessage("", "003" + "/" + name + "-!%!-" + author);
+            string path = @"Temp\" + name + "-" + author + ".mp3";
+            File.WriteAllBytes(path, Convert.FromBase64String(songData));
+        }
+
+        //public void DeleteSong()
 
         public List<AudioFile> GetSongList()
         {

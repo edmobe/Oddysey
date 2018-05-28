@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 //Estas son las canciones
-@XmlRootElement(name = "Audio")
+@XmlRootElement(name = "AudioFile")
 public class AudioFile {
 
 	@XmlElement(name = "Name")
@@ -23,27 +23,26 @@ public class AudioFile {
 	public String score;
 	@XmlElement(name = "Data")
 	public String data;
-
-	@SuppressWarnings("unused")
-	private AudioFile() {
+	
+	public AudioFile() {
 		
 	}
 	
-	// Constructor
-	public AudioFile(String name, String author, String album, String year, String lyrics, String time) {
-		this.name = name;
-		this.author = author;
-		this.album = album;
-		this.year = year;
-		this.lyrics = lyrics;
-		this.time = time;
-	}
+	public void SetMainParameters(String name, String author, String album, String score)
+    {
+        this.name = name;
+        this.author = author;
+        this.album = album;
+        this.score = score;
+    }
 	
 	//For debugging
 	@Override
 	public String toString() {
 		return name + "/" + author + "/" + album + "/" + year + "/" + lyrics + "/" + time + "/" + score;
 	}
+	
+	
 	
 	
 }
