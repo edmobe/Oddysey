@@ -13,5 +13,9 @@
 	<classpathentry kind="lib" path="dependencies/java-json.jar"/>
 	<classpathentry kind="lib" path="dependencies/gson-2.8.1.jar"/>
 	<classpathentry kind="lib" path="dependencies/jaxb-api-2.2.jar"/>
+	<classpathentry kind="lib" path="dependencies/lastfm-java-0.1.2.jar"/>
+	<classpathentry kind="lib" path="dependencies/hamcrest-core-1.3.jar"/>
+	<classpathentry kind="lib" path="dependencies/jMusixMatch-1.1.4.jar"/>
+	<classpathentry kind="lib" path="dependencies/junit-4.12.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

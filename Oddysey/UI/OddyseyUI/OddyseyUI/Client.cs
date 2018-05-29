@@ -151,7 +151,20 @@ namespace OddyseyUI
             File.WriteAllBytes(path, Convert.FromBase64String(songData));
         }
 
-        //public void DeleteSong()
+       public void GetMetadataOnline(AudioFile audio)
+        {
+            string updatedSongXml = SendMessage("", "005" + "/" + audio.Name + "-!%!-" + audio.Author);
+
+            XmlSerializer serializer = new XmlSerializer(typeof(XmlMessage));
+            String dataBackup = audio.Data;
+            using (var reader = new StringReader(updatedSongXml))
+            {
+                XmlMessage message = (XmlMessage)serializer.Deserialize(reader);
+                // audio.Data = dataBackup; // creo que es innecesario
+                audio = message.OperationData.SongToUpdate;
+            }
+            UpdateSongs();
+        }
 
         public List<AudioFile> GetSongList()
         {

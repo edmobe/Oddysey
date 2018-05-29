@@ -24,6 +24,8 @@ public class OperationData {
 	public String authorToDel;
 	@XmlElement(name = "SongData")
 	public String songData;
+	@XmlElement(name = "SongToUpdate")
+	public AudioFile songToUpdate;
 	
 	public OperationData() {
 		audioFiles = new ArrayList<AudioFile>();

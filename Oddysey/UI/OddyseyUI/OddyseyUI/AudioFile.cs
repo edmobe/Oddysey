@@ -13,9 +13,10 @@ namespace OddyseyUI
         public string Album { get; set; }
         public string Year { get; set; }
         public string Lyrics { get; set; }
-        public string Time { get; set; }
+        public string Length { get; set; }
         public string Score { get; set; }
         public string Data { get; set; }
+        public string About { get; set; }
 
         public void SetMainParameters(string name, string author, string album, string score)
         {

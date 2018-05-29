@@ -17,12 +17,14 @@ public class AudioFile {
 	public String year;
 	@XmlElement(name = "Lyrics")
 	public String lyrics;
-	@XmlElement(name = "Time")
-	public String time;
+	@XmlElement(name = "Length")
+	public String length;
 	@XmlElement(name = "Score")
 	public String score;
 	@XmlElement(name = "Data")
 	public String data;
+	@XmlElement(name = "About")
+	public String about;
 	
 	public AudioFile() {
 		
@@ -39,7 +41,7 @@ public class AudioFile {
 	//For debugging
 	@Override
 	public String toString() {
-		return name + "/" + author + "/" + album + "/" + year + "/" + lyrics + "/" + time + "/" + score;
+		return name + "/" + author + "/" + album + "/" + year + "/" + lyrics + "/" + length + "/" + score;
 	}
 	
 	

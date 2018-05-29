@@ -52,8 +52,6 @@ namespace OddyseyUI
             {
                 name = textBox1.Text;
                 author = textBox2.Text;
-                album = textBox3.Text;
-                score = textBox4.Text;
                 Close();
             }
 

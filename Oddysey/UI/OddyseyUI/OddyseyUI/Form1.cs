@@ -253,6 +253,16 @@ namespace OddyseyUI
 
         }
 
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            DataGridViewCellCollection currentRow = dataGridView1.CurrentRow.Cells; // Get the selected song information
+            string name = currentRow[0].Value.ToString(); // Name of the song
+            string author = currentRow[1].Value.ToString(); // Author of the song
+            AudioFile audio = client.GetAudio(name, author); // Get the AudioFile object from the audio list available in the client
+            client.GetMetadataOnline(audio);
+            UpdateDisplay();
+        }
+
         /*
         private void form_FormClosing(object sender, FormClosingEventArgs e)
         {

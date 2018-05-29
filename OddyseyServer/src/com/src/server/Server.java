@@ -15,6 +15,7 @@ import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -34,6 +35,11 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 
+import org.jmusixmatch.MusixMatch;
+import org.jmusixmatch.MusixMatchException;
+import org.jmusixmatch.entity.track.Track;
+import org.jmusixmatch.entity.track.TrackData;
+import org.jmusixmatch.snippet.Snippet;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
@@ -54,6 +60,8 @@ import com.src.dataStructs.BTree;
 import com.src.dataStructs.SplayTree;
 import com.src.login.LogInManager;
 import com.src.main.MainClass;
+
+import de.umass.lastfm.Artist;
 
 
 /**
@@ -150,6 +158,8 @@ public class Server extends Thread {
 			toSend = audioManager.getSongDataXmlString(opCodeMessage);
 		} else if (opCode.equals("004")) { // Delete song
 			toSend = "Got the OPCode " + opCode + " (delete song).";
+		} else if (opCode.equals("005")) { // Get song metadata online
+			toSend = audioManager.getUpdatedSongDataXmlString(opCodeMessage);
 		}
 		os.write(toSend.getBytes("UTF-8"));
 	}
@@ -196,6 +206,8 @@ public class Server extends Thread {
 	        	System.out.println("Unable to delete song :(");
 	        }
 			
+		} else if (opCode.equals("005")) {
+			System.out.println("Updated song!");
 		}
 		
 	}
@@ -210,6 +222,8 @@ public class Server extends Thread {
 	public void updateJSON() {
 		audioManager.updateSongsFile();
 	}
+	
+	
 	
 	/*
 	public String getXmlString(XmlMessage xml) throws JAXBException {

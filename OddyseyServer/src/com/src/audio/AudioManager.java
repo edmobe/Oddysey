@@ -36,6 +36,10 @@ import com.src.main.MainClass;
 import com.src.server.OperationData;
 import com.src.server.XmlMessage;
 
+import org.jmusixmatch.MusixMatch;
+import org.jmusixmatch.MusixMatchException;
+import org.jmusixmatch.entity.track.Track;
+import org.jmusixmatch.entity.track.TrackData;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -150,19 +154,76 @@ public class AudioManager {
 		AudioFile copy = new AudioFile();
 		AudioFile original = songs.get(position);
 		
+		copy.about = original.about;
 		copy.album = original.album;
 		copy.author = original.author;
 		copy.data = original.data;
 		copy.lyrics = original.lyrics;
 		copy.name = original.name;
-		copy.score = original.time;
+		copy.score = original.score;
 		copy.year = original.year;
+		copy.length = original.length;
 		return copy;
+	}
+	
+	private AudioFile getSongCopyWithoutData(AudioFile audio) {
+		for (int i = 0; i < songs.size(); i++) {
+			if (audio.equals(songs.get(i))) {
+				AudioFile copy = getSongCopy(i);
+				copy.data = null;
+				return copy;
+			}
+		}
+		return null;
 	}
 
 	public String getSongDataXmlString(String opCodeMessage) {
 		String[] data = opCodeMessage.split("-!%!-");
 		return getSong(data[0], data[1]).data;
+	}
+	
+	public String getUpdatedSongDataXmlString(String opCodeMessage) {
+		String[] data = opCodeMessage.split("-!%!-");
+		AudioFile audioToUpdate = getSong(data[0], data[1]);
+		updateMetadata(audioToUpdate);
+		AudioFile toSend = getSongCopyWithoutData(audioToUpdate);
+		XmlMessage message = new XmlMessage();
+		message.operationData.songToUpdate = audioToUpdate;
+		return message.getXmlString();
+	}
+	
+	public void updateMetadata(AudioFile audio) {
+		String musixMatchKey = "0f3a24470422fadf7054c6ff84f5ff4d";
+		String lastFmKey = "ff3f5b0c93edf76b85c985489046e537";
+		MusixMatch musixMatch = new MusixMatch(musixMatchKey);		
+		try {
+			Track track = musixMatch.getMatchingTrack(audio.name, audio.author);
+			TrackData data = track.getTrack();
+			String about = de.umass.lastfm.Track.getInfo(audio.author, audio.name, lastFmKey).getWikiText();
+			String lyrics = musixMatch.getLyrics(data.getTrackId()).getLyricsBody();
+			
+			audio.album = data.getAlbumName();
+			audio.about = about;
+			audio.year = data.getFirstReleaseDate();
+			
+			if (!lyrics.equals("")) {
+				audio.lyrics = lyrics;
+			}
+			
+			// For debugging
+			System.out.println("Album Name : " + data.getAlbumName());
+			System.out.println("");
+			System.out.println("Album Name : " + data.getArtistName());
+			System.out.println("");
+			System.out.println("About: " + about);
+			System.out.println("");
+			System.out.println("Lyrics: " + musixMatch.getLyrics(data.getTrackId()).getLyricsBody());
+			
+		} catch (MusixMatchException e) {
+			// For debugging
+			System.out.println("Song not found");
+		}
+		
 	}
 	
 	/*

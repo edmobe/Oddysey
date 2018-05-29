@@ -17,6 +17,8 @@ namespace OddyseyUI
         public string AuthorToDel { get; set; }
         [XmlElement("SongData")]
         public string SongData { get; set; }
+        [XmlElement("SongToUpdate")]
+        public AudioFile SongToUpdate { get; set; }
 
         public OperationData()
         {
