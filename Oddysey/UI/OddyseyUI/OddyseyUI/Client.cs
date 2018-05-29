@@ -151,7 +151,7 @@ namespace OddyseyUI
             File.WriteAllBytes(path, Convert.FromBase64String(songData));
         }
 
-       public void GetMetadataOnline(AudioFile audio)
+       public Boolean GetMetadataOnline(AudioFile audio)
         {
             string updatedSongXml = SendMessage("", "005" + "/" + audio.Name + "-!%!-" + audio.Author);
 
@@ -163,7 +163,17 @@ namespace OddyseyUI
                 // audio.Data = dataBackup; // creo que es innecesario
                 audio = message.OperationData.SongToUpdate;
             }
-            UpdateSongs();
+
+            if (audio.Album is null)
+            {
+                return false;
+            }
+            else
+            {
+                UpdateSongs();
+                return true;
+            }
+
         }
 
         public List<AudioFile> GetSongList()

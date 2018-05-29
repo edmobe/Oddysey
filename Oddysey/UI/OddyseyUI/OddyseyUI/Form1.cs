@@ -207,9 +207,12 @@ namespace OddyseyUI
             string author = currentRow[1].Value.ToString(); // Author of the song
             AudioFile audio = client.GetAudio(name, author); // Get the AudioFile object from the audio list available in the client
             client.DeleteSong(audio.Name, audio.Author);
-            if (Playing.Equals(audio)) // If the song to delete is playing
+            if (Playing != null) // If the song to delete is playing
             {
-                Stop();
+                if(Playing.Equals(audio))
+                {
+                    Stop();
+                }
             }
             UpdateDisplay();
 
@@ -259,7 +262,14 @@ namespace OddyseyUI
             string name = currentRow[0].Value.ToString(); // Name of the song
             string author = currentRow[1].Value.ToString(); // Author of the song
             AudioFile audio = client.GetAudio(name, author); // Get the AudioFile object from the audio list available in the client
-            client.GetMetadataOnline(audio);
+            if (client.GetMetadataOnline(audio))
+            {
+                MessageBox.Show("Song updated successfully!");
+            }
+            else
+            {
+                MessageBox.Show("Song was not found :(");
+            }
             UpdateDisplay();
         }
 
