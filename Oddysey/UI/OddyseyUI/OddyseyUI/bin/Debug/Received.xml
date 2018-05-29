@@ -3,23 +3,13 @@
     <OperationData>
         <AudioFiles>
             <AudioFile>
-                <Name>One</Name>
-                <Author>Metallica</Author>
-                <Album>...And Justice for All</Album>
-            </AudioFile>
-            <AudioFile>
-                <Name>Macarena</Name>
-                <Author>Los del Rio</Author>
-                <Album>Desconocido</Album>
-            </AudioFile>
-            <AudioFile>
-                <Name>Nuvole Biance</Name>
+                <Name>Nuvole Bianci</Name>
                 <Author>Ludovico Einaudi</Author>
                 <Album>Desconocido</Album>
             </AudioFile>
             <AudioFile>
                 <Name>Toxicity</Name>
-                <Author>SOD</Author>
+                <Author>System of a Down</Author>
                 <Album>Toxicity</Album>
             </AudioFile>
         </AudioFiles>

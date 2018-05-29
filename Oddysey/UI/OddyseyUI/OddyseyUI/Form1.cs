@@ -17,6 +17,7 @@ namespace OddyseyUI
         Client client;
         public Boolean Logd;
         public Boolean Paused;
+        public Boolean Stopped = true;
         public AudioFile Playing;
 
         public Form1()
@@ -30,9 +31,7 @@ namespace OddyseyUI
             {
                 AudioFile song = client.GetSongList()[i]; // En lugar de 0 es i
                 dataGridView1.Rows.Add(song.Name, song.Author, song.Album, song.Score);
-            }         
-
-
+            }
         }
         public void ChangeLabel(String text)
         {
@@ -47,7 +46,7 @@ namespace OddyseyUI
 
         private void Play_Click(object sender, EventArgs e) // If play button was pressed
         {
-            if (!Paused) // If the music is playing
+            if (!Paused || !Stopped) // If the music is playing
             {
                 axWindowsMediaPlayer1.Ctlcontrols.pause(); // Pauses the song
                 Paused = true; // Is paused
@@ -105,17 +104,22 @@ namespace OddyseyUI
             {
                 string fileName = Open.FileName;
                 client.AddSong(fileName);
-                dataGridView1.Rows.Clear();
-                dataGridView1.DataSource = null;
-                for (int i = 0; i < client.GetSongList().Count; i++)
-                {
-                    AudioFile song = client.GetSongList()[i]; // En lugar de 0 es i
-                    dataGridView1.Rows.Add(song.Name, song.Author, song.Album, song.Score);
-                }
+                UpdateDisplay();
             }
 
             // c1.Play(audio);
             //Console.WriteLine(audio.Data);
+        }
+
+        private void UpdateDisplay()
+        {
+            dataGridView1.Rows.Clear();
+            dataGridView1.DataSource = null;
+            for (int i = 0; i < client.GetSongList().Count; i++)
+            {
+                AudioFile song = client.GetSongList()[i]; // En lugar de 0 es i
+                dataGridView1.Rows.Add(song.Name, song.Author, song.Album, song.Score);
+            }
         }
 
         private void UserLabel_Click(object sender, EventArgs e)
@@ -182,16 +186,32 @@ namespace OddyseyUI
 
         }
 
-        private void button3_Click_1(object sender, EventArgs e)
+        private void Stop()
         {
             axWindowsMediaPlayer1.Ctlcontrols.stop();
             Playing = null;
             Paused = false;
+            Stopped = true;
             Play.Text = "Play";
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            Stop();
         }
 
         private void button4_Click_1(object sender, EventArgs e)
         {
+            DataGridViewCellCollection currentRow = dataGridView1.CurrentRow.Cells; // Get the selected song information
+            string name = currentRow[0].Value.ToString(); // Name of the song
+            string author = currentRow[1].Value.ToString(); // Author of the song
+            AudioFile audio = client.GetAudio(name, author); // Get the AudioFile object from the audio list available in the client
+            client.DeleteSong(audio.Name, audio.Author);
+            if (Playing.Equals(audio)) // If the song to delete is playing
+            {
+                Stop();
+            }
+            UpdateDisplay();
 
         }
 
@@ -226,6 +246,11 @@ namespace OddyseyUI
         {
             Paused = true;
             axWindowsMediaPlayer1.Ctlcontrols.pause();
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
         /*

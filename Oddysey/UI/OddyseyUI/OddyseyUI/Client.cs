@@ -116,6 +116,14 @@ namespace OddyseyUI
 
         }
 
+        public void DeleteSong(string name, string author)
+        {
+            XmlMessage xml = new XmlMessage();
+            string toSend = xml.GetDeleteSongXML(name, author);
+            SendMessage(toSend, "004/null");
+            UpdateSongs();
+        }
+
         public void UpdateSongs()
         {
             SongList = new List<AudioFile>();

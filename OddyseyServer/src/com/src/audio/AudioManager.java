@@ -45,8 +45,6 @@ public class AudioManager {
 
 	// private FileWriter fl;
 	public static List<AudioFile> songs;
-	private final File usersFile;
-	private final File audiosFile;
 	/*
 	// Falta hacer que funcionen con AudioFiles
 	private static AVLTree byArtist;
@@ -57,8 +55,6 @@ public class AudioManager {
 	public AudioManager() {
 		// Hacer que el JSON agregue las canciones a songs
 		songs = new ArrayList<AudioFile>();
-		usersFile = new File("jsonFiles/users.json");
-		audiosFile = new File("jsonFiles/audios.json");
 		parseAudiosFile();
 		/*
 		// Falta hacer que funcionen con AudioFiles
@@ -73,9 +69,12 @@ public class AudioManager {
 		Gson gson = new Gson();
 		JsonReader reader;
 		try {
-			reader = new JsonReader(new FileReader("jsonFiles/audios.json"));
+			FileReader fileReader = new FileReader("jsonFiles/audios.json");
+			reader = new JsonReader(fileReader);
 			songs = gson.fromJson(reader, REVIEW_TYPE); // contains the whole reviews list
-		} catch (FileNotFoundException e) {
+			reader.close();
+			fileReader.close();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -104,18 +103,22 @@ public class AudioManager {
 	public boolean addSong(AudioFile audio) throws IOException {
 		if (getSong(audio.name, audio.author) == null) {
 			songs.add(audio);
-			updateSongsFile();
 			return true;
 		}
 		return false;
 	}
 	
+	public boolean deleteSong(AudioFile audio) throws IOException {
+		songs.remove(audio);
+		return true;
+	} 
+	
 	
 	public void updateSongsFile() {
 		String json = new Gson().toJson(songs);
-		FileWriter writer;
 		try {
-			writer = new FileWriter(audiosFile, false);
+			File audiosFile = new File("jsonFiles/audios.json");
+			FileWriter writer = new FileWriter(audiosFile, false);
 			writer.write(json);
 			writer.close();
 		} catch (IOException e) {

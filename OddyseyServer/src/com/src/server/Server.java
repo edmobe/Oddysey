@@ -46,6 +46,7 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.google.gson.Gson;
 import com.src.audio.AudioFile;
 import com.src.audio.AudioManager;
 import com.src.dataStructs.AVLTree;
@@ -61,7 +62,7 @@ import com.src.main.MainClass;
  * @author edmobe
  *
  */
-public class Server implements Runnable{
+public class Server extends Thread {
 	
 	private static String opCode;
 	private static String opCodeMessage;
@@ -78,6 +79,7 @@ public class Server implements Runnable{
 	/**
 	 * Runs the Socket loop.
 	 */
+	@Override
 	public void run() {
 		
 		try {
@@ -146,6 +148,8 @@ public class Server implements Runnable{
 			toSend = audioManager.getSongsMainDataXmlString();
 		} else if (opCode.equals("003")) { // Send the song data
 			toSend = audioManager.getSongDataXmlString(opCodeMessage);
+		} else if (opCode.equals("004")) { // Delete song
+			toSend = "Got the OPCode " + opCode + " (delete song).";
 		}
 		os.write(toSend.getBytes("UTF-8"));
 	}
@@ -161,10 +165,8 @@ public class Server implements Runnable{
 	 */
 	private void receive(ByteArrayOutputStream buffer, String opCode) throws JAXBException, JsonGenerationException, JsonMappingException, IOException {
 		
-		if (opCode.equals("001")) { // Add song
-			// For testing			
+		if (opCode.equals("001")) { // Add song		
 			String xmlString = buffer.toString("UTF-8");
-
 			XmlMessage message = getXmlMessage(xmlString);
 			
 	        try (PrintWriter out = new PrintWriter("Receiving.txt")) {
@@ -178,6 +180,22 @@ public class Server implements Runnable{
 	        	
 		} else if (opCode.equals("002")) {
 			System.out.println("Sent songs data!");
+			
+		} else if (opCode.equals("004")) {
+			String xmlString = buffer.toString("UTF-8");
+			XmlMessage message = getXmlMessage(xmlString);
+			
+	        try (PrintWriter out = new PrintWriter("Receiving.txt")) {
+			    out.println(buffer);
+			}
+	        
+	        AudioFile audio = audioManager.getSong(message.operationData.nameToDel, message.operationData.authorToDel);
+	        if (audioManager.deleteSong(audio)) {
+	        	System.out.println("Song deleted!");
+	        } else {
+	        	System.out.println("Unable to delete song :(");
+	        }
+			
 		}
 		
 	}
@@ -187,6 +205,10 @@ public class Server implements Runnable{
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
         StringReader reader = new StringReader(xmlString);        
         return (XmlMessage) unmarshaller.unmarshal(reader);
+	}
+	
+	public void updateJSON() {
+		audioManager.updateSongsFile();
 	}
 	
 	/*
