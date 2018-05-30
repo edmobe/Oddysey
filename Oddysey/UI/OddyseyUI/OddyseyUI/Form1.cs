@@ -46,41 +46,44 @@ namespace OddyseyUI
 
         private void Play_Click(object sender, EventArgs e) // If play button was pressed
         {
-            if (!Paused || !Stopped) // If the music is playing
+            if(client.GetSongList().Count > 0)
             {
-                axWindowsMediaPlayer1.Ctlcontrols.pause(); // Pauses the song
-                Paused = true; // Is paused
-                Play.Text = "Play";
-            }
-            else
-            {
-                DataGridViewCellCollection currentRow = dataGridView1.CurrentRow.Cells; // Get the selected song information
-                string name = currentRow[0].Value.ToString(); // Name of the song
-                string author = currentRow[1].Value.ToString(); // Author of the song
-                AudioFile audio = client.GetAudio(name, author); // Get the AudioFile object from the audio list available in the client
-                if (Playing == null || !Playing.Equals(audio)) // If no song is being played or the selected song changed
+                if (!Paused || !Stopped) // If the music is playing
                 {
-                    Playing = audio;
-                    string url = @"Temp\" + Playing.Name + "-" + Playing.Author + ".mp3"; // The song URL
-                    if (!File.Exists(url)) // If the song has not been downloaded
+                    axWindowsMediaPlayer1.Ctlcontrols.pause(); // Pauses the song
+                    Paused = true; // Is paused
+                    Play.Text = "Play";
+                }
+                else
+                {
+                    DataGridViewCellCollection currentRow = dataGridView1.CurrentRow.Cells; // Get the selected song information
+                    string name = currentRow[0].Value.ToString(); // Name of the song
+                    string author = currentRow[1].Value.ToString(); // Author of the song
+                    AudioFile audio = client.GetAudio(name, author); // Get the AudioFile object from the audio list available in the client
+                    if (Playing == null || !Playing.Equals(audio)) // If no song is being played or the selected song changed
                     {
-                        client.DownloadSong(audio.Name, audio.Author); // Downloads the song
+                        Playing = audio;
+                        string url = @"Temp\" + Playing.Name + "-" + Playing.Author + ".mp3"; // The song URL
+                        if (!File.Exists(url)) // If the song has not been downloaded
+                        {
+                            client.DownloadSong(audio.Name, audio.Author); // Downloads the song
+                        }
+                        axWindowsMediaPlayer1.URL = url; // Adds the song to the player
+                        axWindowsMediaPlayer1.Ctlcontrols.play(); // Plays the song
+                        Paused = false; // Is not paused
+                        Play.Text = "Pause";
                     }
-                    axWindowsMediaPlayer1.URL = url; // Adds the song to the player
-                    axWindowsMediaPlayer1.Ctlcontrols.play(); // Plays the song
-                    Paused = false; // Is not paused
-                    Play.Text = "Pause";
+                    else // If the song has not changed
+                    {
+                        axWindowsMediaPlayer1.Ctlcontrols.play(); // Plays the song
+                        Paused = false; // Is not paused
+                        Play.Text = "Pause";
+                    }
                 }
-                else // If the song has not changed
-                {
-                    axWindowsMediaPlayer1.Ctlcontrols.play(); // Plays the song
-                    Paused = false; // Is not paused
-                    Play.Text = "Pause";
-                }
+                //Console.WriteLine(audio.Data);
+                //String toSend = m1.GetAddSongXML(audio);
+                //c1.SendMessage(toSend, "001");
             }
-            //Console.WriteLine(audio.Data);
-            //String toSend = m1.GetAddSongXML(audio);
-            //c1.SendMessage(toSend, "001");
         }
 
         private void Equalizer_Click(object sender, EventArgs e)
@@ -197,25 +200,30 @@ namespace OddyseyUI
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            Stop();
+            if (client.GetSongList().Count > 0)
+            {
+                Stop();
+            }
         }
 
         private void button4_Click_1(object sender, EventArgs e)
         {
-            DataGridViewCellCollection currentRow = dataGridView1.CurrentRow.Cells; // Get the selected song information
-            string name = currentRow[0].Value.ToString(); // Name of the song
-            string author = currentRow[1].Value.ToString(); // Author of the song
-            AudioFile audio = client.GetAudio(name, author); // Get the AudioFile object from the audio list available in the client
-            client.DeleteSong(audio.Name, audio.Author);
-            if (Playing != null) // If the song to delete is playing
+            if (client.GetSongList().Count > 0)
             {
-                if(Playing.Equals(audio))
+                DataGridViewCellCollection currentRow = dataGridView1.CurrentRow.Cells; // Get the selected song information
+                string name = currentRow[0].Value.ToString(); // Name of the song
+                string author = currentRow[1].Value.ToString(); // Author of the song
+                AudioFile audio = client.GetAudio(name, author); // Get the AudioFile object from the audio list available in the client
+                client.DeleteSong(audio.Name, audio.Author);
+                if (Playing != null) // If the song to delete is playing
                 {
-                    Stop();
+                    if (Playing.Equals(audio))
+                    {
+                        Stop();
+                    }
                 }
+                UpdateDisplay();
             }
-            UpdateDisplay();
-
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -258,19 +266,22 @@ namespace OddyseyUI
 
         private void button5_Click_1(object sender, EventArgs e)
         {
-            DataGridViewCellCollection currentRow = dataGridView1.CurrentRow.Cells; // Get the selected song information
-            string name = currentRow[0].Value.ToString(); // Name of the song
-            string author = currentRow[1].Value.ToString(); // Author of the song
-            AudioFile audio = client.GetAudio(name, author); // Get the AudioFile object from the audio list available in the client
-            if (client.GetMetadataOnline(audio))
+            if(client.GetSongList().Count > 0)
             {
-                MessageBox.Show("Song updated successfully!");
+                DataGridViewCellCollection currentRow = dataGridView1.CurrentRow.Cells; // Get the selected song information
+                string name = currentRow[0].Value.ToString(); // Name of the song
+                string author = currentRow[1].Value.ToString(); // Author of the song
+                AudioFile audio = client.GetAudio(name, author); // Get the AudioFile object from the audio list available in the client
+                if (client.GetMetadataOnline(audio))
+                {
+                    MessageBox.Show("Song updated successfully!");
+                }
+                else
+                {
+                    MessageBox.Show("Song was not found :(");
+                }
+                UpdateDisplay();
             }
-            else
-            {
-                MessageBox.Show("Song was not found :(");
-            }
-            UpdateDisplay();
         }
 
         /*

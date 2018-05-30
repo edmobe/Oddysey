@@ -75,7 +75,10 @@ public class AudioManager {
 		try {
 			FileReader fileReader = new FileReader("jsonFiles/audios.json");
 			reader = new JsonReader(fileReader);
-			songs = gson.fromJson(reader, REVIEW_TYPE); // contains the whole reviews list
+			List<AudioFile> jsonSongs = gson.fromJson(reader, REVIEW_TYPE); // contains the whole reviews list
+			if(jsonSongs != null) {
+				songs = jsonSongs;
+			}
 			reader.close();
 			fileReader.close();
 		} catch (IOException e) {
@@ -204,7 +207,7 @@ public class AudioManager {
 			
 			audio.album = data.getAlbumName();
 			audio.about = about;
-			audio.year = data.getFirstReleaseDate();
+			audio.year = data.getFirstReleaseDate().replaceAll("T00:00:00Z", "");
 			
 			if (!lyrics.equals("")) {
 				audio.lyrics = lyrics;
