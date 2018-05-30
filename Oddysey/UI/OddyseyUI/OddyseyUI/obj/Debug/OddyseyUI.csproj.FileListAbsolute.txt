@@ -52,3 +52,5 @@ D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj
 D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.csproj.CopyComplete
 D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.exe
 D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.pdb
+D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.Form4.resources
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.Form4.resources

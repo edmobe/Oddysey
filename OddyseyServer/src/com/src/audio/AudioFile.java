@@ -44,7 +44,4 @@ public class AudioFile {
 		return name + "/" + author + "/" + album + "/" + year + "/" + lyrics + "/" + length + "/" + score;
 	}
 	
-	
-	
-	
 }

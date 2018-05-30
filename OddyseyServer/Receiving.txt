@@ -1,6 +1,6 @@
 <XmlMessage>
   <OperationData>
-    <NameToDel>Toxicity</NameToDel>
-    <AuthorToDel>System of a Down</AuthorToDel>
+    <NameToDel>One</NameToDel>
+    <AuthorToDel>Metallica</AuthorToDel>
   </OperationData>
 </XmlMessage>

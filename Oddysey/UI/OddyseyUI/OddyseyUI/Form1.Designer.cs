@@ -30,12 +30,14 @@ namespace OddyseyUI
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
             this.NotiLabel = new System.Windows.Forms.Label();
             this.NotificationList = new System.Windows.Forms.ListBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.SongLabel = new System.Windows.Forms.Label();
@@ -61,7 +63,6 @@ namespace OddyseyUI
             this.NowPlaying = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Equalizer = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -93,14 +94,13 @@ namespace OddyseyUI
             this.NotiLabel.ForeColor = System.Drawing.Color.GhostWhite;
             this.NotiLabel.Location = new System.Drawing.Point(19, 34);
             this.NotiLabel.Name = "NotiLabel";
-            this.NotiLabel.Size = new System.Drawing.Size(113, 21);
+            this.NotiLabel.Size = new System.Drawing.Size(85, 16);
             this.NotiLabel.TabIndex = 12;
             this.NotiLabel.Text = "Notifications";
             // 
             // NotificationList
             // 
             this.NotificationList.FormattingEnabled = true;
-            this.NotificationList.ItemHeight = 20;
             this.NotificationList.Location = new System.Drawing.Point(18, 82);
             this.NotificationList.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.NotificationList.Name = "NotificationList";
@@ -111,6 +111,7 @@ namespace OddyseyUI
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.panel2.Controls.Add(this.button6);
             this.panel2.Controls.Add(this.button5);
             this.panel2.Controls.Add(this.button4);
             this.panel2.Controls.Add(this.button2);
@@ -123,6 +124,29 @@ namespace OddyseyUI
             this.panel2.Size = new System.Drawing.Size(1160, 121);
             this.panel2.TabIndex = 13;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // button6
+            // 
+            this.button6.Font = new System.Drawing.Font("Maiandra GD", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button6.Location = new System.Drawing.Point(691, 82);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(100, 29);
+            this.button6.TabIndex = 5;
+            this.button6.Text = "Edit";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button5
+            // 
+            this.button5.Font = new System.Drawing.Font("Maiandra GD", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.Location = new System.Drawing.Point(797, 82);
+            this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(100, 29);
+            this.button5.TabIndex = 4;
+            this.button5.Text = "Update";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
             // 
             // button4
             // 
@@ -155,7 +179,7 @@ namespace OddyseyUI
             this.SongLabel.ForeColor = System.Drawing.Color.Black;
             this.SongLabel.Location = new System.Drawing.Point(30, 11);
             this.SongLabel.Name = "SongLabel";
-            this.SongLabel.Size = new System.Drawing.Size(158, 62);
+            this.SongLabel.Size = new System.Drawing.Size(109, 42);
             this.SongLabel.TabIndex = 2;
             this.SongLabel.Text = "Songs";
             // 
@@ -164,7 +188,7 @@ namespace OddyseyUI
             this.Search.Location = new System.Drawing.Point(27, 78);
             this.Search.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(191, 26);
+            this.Search.Size = new System.Drawing.Size(191, 20);
             this.Search.TabIndex = 1;
             this.Search.Text = "Search";
             // 
@@ -216,7 +240,7 @@ namespace OddyseyUI
             this.LoggedLabel.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.LoggedLabel.Location = new System.Drawing.Point(3, 11);
             this.LoggedLabel.Name = "LoggedLabel";
-            this.LoggedLabel.Size = new System.Drawing.Size(115, 21);
+            this.LoggedLabel.Size = new System.Drawing.Size(84, 16);
             this.LoggedLabel.TabIndex = 2;
             this.LoggedLabel.Text = "Logged in as:";
             this.LoggedLabel.Click += new System.EventHandler(this.LoggedLabel_Click);
@@ -230,7 +254,7 @@ namespace OddyseyUI
             this.UserLabel.ForeColor = System.Drawing.SystemColors.Control;
             this.UserLabel.Location = new System.Drawing.Point(133, 11);
             this.UserLabel.Name = "UserLabel";
-            this.UserLabel.Size = new System.Drawing.Size(77, 21);
+            this.UserLabel.Size = new System.Drawing.Size(56, 16);
             this.UserLabel.TabIndex = 1;
             this.UserLabel.Text = "USER ID";
             this.UserLabel.Click += new System.EventHandler(this.UserLabel_Click);
@@ -238,7 +262,6 @@ namespace OddyseyUI
             // FriendList
             // 
             this.FriendList.FormattingEnabled = true;
-            this.FriendList.ItemHeight = 20;
             this.FriendList.Location = new System.Drawing.Point(26, 82);
             this.FriendList.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.FriendList.Name = "FriendList";
@@ -267,15 +290,15 @@ namespace OddyseyUI
             this.Column2,
             this.Column3,
             this.Column4});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Location = new System.Drawing.Point(111, 42);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.MultiSelect = false;
@@ -398,7 +421,7 @@ namespace OddyseyUI
             this.ArtistLabel.ForeColor = System.Drawing.Color.GhostWhite;
             this.ArtistLabel.Location = new System.Drawing.Point(127, 52);
             this.ArtistLabel.Name = "ArtistLabel";
-            this.ArtistLabel.Size = new System.Drawing.Size(62, 19);
+            this.ArtistLabel.Size = new System.Drawing.Size(43, 14);
             this.ArtistLabel.TabIndex = 6;
             this.ArtistLabel.Text = "ARTIST";
             // 
@@ -409,7 +432,7 @@ namespace OddyseyUI
             this.label6.ForeColor = System.Drawing.Color.GhostWhite;
             this.label6.Location = new System.Drawing.Point(127, 33);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(106, 19);
+            this.label6.Size = new System.Drawing.Size(73, 14);
             this.label6.TabIndex = 5;
             this.label6.Text = "SONG NAME";
             // 
@@ -420,7 +443,7 @@ namespace OddyseyUI
             this.NowPlaying.ForeColor = System.Drawing.Color.GhostWhite;
             this.NowPlaying.Location = new System.Drawing.Point(127, 14);
             this.NowPlaying.Name = "NowPlaying";
-            this.NowPlaying.Size = new System.Drawing.Size(140, 19);
+            this.NowPlaying.Size = new System.Drawing.Size(99, 14);
             this.NowPlaying.TabIndex = 4;
             this.NowPlaying.Text = "NOW PLAYING:";
             this.NowPlaying.Click += new System.EventHandler(this.NowPlaying_Click);
@@ -447,18 +470,6 @@ namespace OddyseyUI
             this.Equalizer.Text = "Equalizer";
             this.Equalizer.UseVisualStyleBackColor = false;
             this.Equalizer.Click += new System.EventHandler(this.Equalizer_Click);
-            // 
-            // button5
-            // 
-            this.button5.Font = new System.Drawing.Font("Maiandra GD", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(797, 82);
-            this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(100, 29);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Update";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click_1);
             // 
             // Form1
             // 
@@ -524,6 +535,7 @@ namespace OddyseyUI
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
         private Button button5;
+        private Button button6;
     }
 }
 

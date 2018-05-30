@@ -284,6 +284,12 @@ namespace OddyseyUI
             }
         }
 
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Form4 edit = new Form4();
+            edit.Show();
+        }
+
         /*
         private void form_FormClosing(object sender, FormClosingEventArgs e)
         {
