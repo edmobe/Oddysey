@@ -1,5 +1,6 @@
 package com.src.dataStructs;
 
+import com.src.audio.AudioFile;
 
 public class AVLTree {
 
@@ -9,9 +10,10 @@ public class AVLTree {
 		this.root = null;
 	}
 	
-	public void insert(String data) {
+	public void insert(AudioFile audio) {
 		
-		AVLNode newNode = new AVLNode(data);
+		AVLNode newNode = new AVLNode(audio.author);
+		newNode.audio = audio;
 		
 		if(this.root == null) {
 			this.root = newNode;

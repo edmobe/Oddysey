@@ -77,6 +77,7 @@ public class Server extends Thread {
 	private final ObjectMapper mapper;
 	//private static LogInManager lim;
 	private static AudioManager audioManager;
+	private AVLTree avltree;
 	
 	public Server() {
 		mapper = new ObjectMapper();
@@ -185,6 +186,9 @@ public class Server extends Thread {
 	        
 	        AudioFile audio = message.operationData.songToAdd;
 	        audioManager.addSong(audio);
+	        avltree.insert(audio);
+	        //se inserta en el arbol B
+	        //se inserta en el arbol Splay
 	        
 	        System.out.println("Saved song: " + audio.name + audio.author + audio.album + audio.score);
 	        	
