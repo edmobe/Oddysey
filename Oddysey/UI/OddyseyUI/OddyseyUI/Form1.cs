@@ -38,9 +38,10 @@ namespace OddyseyUI
 
         }
 
-        private void SearchButton_Click(object sender, EventArgs e)
+        private void SearchButton_Click(object sender, EventArgs e)//Search by song tittle
         {
-            //Toma el texto del search textbox y lo
+            string title = Search.Text;
+            //client.findSong(); //Hay que implementarlo
             
         }
 

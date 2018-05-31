@@ -19,6 +19,19 @@ namespace OddyseyUI
         public string SongData { get; set; }
         [XmlElement("SongToUpdate")]
         public AudioFile SongToUpdate { get; set; }
+        [XmlElement("UserToAdd")]
+        public User UserToAdd { get; set; }
+        [XmlElement("UserToLog")]
+        public User UserToLog { get; set; }
+        [XmlElement("SongToFind")]  //Talvez lo simplifique
+        public string SongToFind { get; set; }
+        [XmlElement("ArtistToFind")]
+        public string ArtisToFind { get; set; }
+        [XmlElement("AlbumToFind")]
+        public string AlbumToFind { get; set; }
+
+
+
 
         public OperationData()
         {

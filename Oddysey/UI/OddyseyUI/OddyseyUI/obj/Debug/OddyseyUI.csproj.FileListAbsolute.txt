@@ -54,3 +54,7 @@ D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj
 D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.pdb
 D:\Usuarios\Josué\Desktop\Proyecto 2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.Form4.resources
 D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.Form4.resources
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\Interop.WMPLib.dll
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\AxInterop.WMPLib.dll
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\AxInterop.WMPLib.dll
+C:\Users\alekm\Desktop\Proyecto2\Oddysey\Oddysey\UI\OddyseyUI\OddyseyUI\obj\Debug\OddyseyUI.Form4.resources

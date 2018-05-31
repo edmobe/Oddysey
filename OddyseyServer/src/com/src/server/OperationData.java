@@ -3,13 +3,12 @@ package com.src.server;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.src.audio.AudioFile;
+import com.src.login.User;
 
 @XmlRootElement(name = "OperationData")
 public class OperationData {
@@ -26,6 +25,10 @@ public class OperationData {
 	public String songData;
 	@XmlElement(name = "SongToUpdate")
 	public AudioFile songToUpdate;
+	@XmlElement(name = "UserToAdd")
+	public User userToAdd;
+	@XmlElement(name = "UserToLog")
+	public User userToLog;
 	
 	public OperationData() {
 		audioFiles = new ArrayList<AudioFile>();

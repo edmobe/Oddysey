@@ -1,6 +1,8 @@
 <XmlMessage>
   <OperationData>
-    <NameToDel>One</NameToDel>
-    <AuthorToDel>Metallica</AuthorToDel>
+    <UserToLog>
+      <NickName>edmobe</NickName>
+      <Password>81DC9BDB52D04DC20036DBD8313ED055</Password>
+    </UserToLog>
   </OperationData>
 </XmlMessage>
