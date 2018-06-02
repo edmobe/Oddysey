@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -89,7 +90,8 @@ namespace OddyseyUI
 
         private void Equalizer_Click(object sender, EventArgs e)
         {
-            // Enciende/Apaga el equalizador
+            string path = @"AudioSpectrumAdvance\AudioSpectrumAdvance\bin\Debug\AudioSpectrumAdvance.exe";
+            Process.Start(path);
         }
 
         private void Button1_Click(object sender, EventArgs e)

@@ -1,0 +1,29 @@
+c:\users\houri\documents\visual studio 2015\Projects\AudioSpectrumAdvance\AudioSpectrumAdvance\bin\Debug\AudioSpectrumAdvance.exe.config
+c:\users\houri\documents\visual studio 2015\Projects\AudioSpectrumAdvance\AudioSpectrumAdvance\bin\Debug\AudioSpectrumAdvance.exe
+c:\users\houri\documents\visual studio 2015\Projects\AudioSpectrumAdvance\AudioSpectrumAdvance\bin\Debug\AudioSpectrumAdvance.pdb
+c:\users\houri\documents\visual studio 2015\Projects\AudioSpectrumAdvance\AudioSpectrumAdvance\bin\Debug\Bass.Net.dll
+c:\users\houri\documents\visual studio 2015\Projects\AudioSpectrumAdvance\AudioSpectrumAdvance\obj\Debug\AudioSpectrumAdvance.csprojResolveAssemblyReference.cache
+c:\users\houri\documents\visual studio 2015\Projects\AudioSpectrumAdvance\AudioSpectrumAdvance\obj\Debug\AudioSpectrumAdvance.Properties.Resources.resources
+c:\users\houri\documents\visual studio 2015\Projects\AudioSpectrumAdvance\AudioSpectrumAdvance\obj\Debug\AudioSpectrumAdvance.csproj.GenerateResource.Cache
+c:\users\houri\documents\visual studio 2015\Projects\AudioSpectrumAdvance\AudioSpectrumAdvance\obj\Debug\AudioSpectrumAdvance.exe
+c:\users\houri\documents\visual studio 2015\Projects\AudioSpectrumAdvance\AudioSpectrumAdvance\obj\Debug\AudioSpectrumAdvance.pdb
+c:\users\houri\documents\visual studio 2015\Projects\AudioSpectrumAdvance\AudioSpectrumAdvance\obj\Debug\Spectrum.baml
+c:\users\houri\documents\visual studio 2015\Projects\AudioSpectrumAdvance\AudioSpectrumAdvance\obj\Debug\Spectrum.g.cs
+c:\users\houri\documents\visual studio 2015\Projects\AudioSpectrumAdvance\AudioSpectrumAdvance\obj\Debug\AudioSpectrumAdvance_MarkupCompile.cache
+c:\users\houri\documents\visual studio 2015\Projects\AudioSpectrumAdvance\AudioSpectrumAdvance\obj\Debug\AudioSpectrumAdvance.g.resources
+c:\users\houri\documents\visual studio 2015\Projects\AudioSpectrumAdvance\AudioSpectrumAdvance\obj\Debug\AudioSpectrumAdvance.Form1.resources
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\AudioSpectrumAdvance\AudioSpectrumAdvance\bin\Debug\AudioSpectrumAdvance.exe.config
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\AudioSpectrumAdvance\AudioSpectrumAdvance\bin\Debug\AudioSpectrumAdvance.exe
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\AudioSpectrumAdvance\AudioSpectrumAdvance\bin\Debug\AudioSpectrumAdvance.pdb
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\AudioSpectrumAdvance\AudioSpectrumAdvance\obj\Debug\AudioSpectrumAdvance.csprojAssemblyReference.cache
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\AudioSpectrumAdvance\AudioSpectrumAdvance\obj\Debug\Spectrum.baml
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\AudioSpectrumAdvance\AudioSpectrumAdvance\obj\Debug\Spectrum.g.cs
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\AudioSpectrumAdvance\AudioSpectrumAdvance\obj\Debug\AudioSpectrumAdvance_MarkupCompile.cache
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\AudioSpectrumAdvance\AudioSpectrumAdvance\obj\Debug\AudioSpectrumAdvance.g.resources
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\AudioSpectrumAdvance\AudioSpectrumAdvance\obj\Debug\AudioSpectrumAdvance.Form1.resources
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\AudioSpectrumAdvance\AudioSpectrumAdvance\obj\Debug\AudioSpectrumAdvance.Properties.Resources.resources
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\AudioSpectrumAdvance\AudioSpectrumAdvance\obj\Debug\AudioSpectrumAdvance.csproj.GenerateResource.cache
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\AudioSpectrumAdvance\AudioSpectrumAdvance\obj\Debug\AudioSpectrumAdvance.csproj.CoreCompileInputs.cache
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\AudioSpectrumAdvance\AudioSpectrumAdvance\obj\Debug\AudioSpectrumAdvance.csproj.CopyComplete
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\AudioSpectrumAdvance\AudioSpectrumAdvance\obj\Debug\AudioSpectrumAdvance.exe
+D:\Google Drive\Documentos\TEC\SEMESTRE 7\Algoritmos y Estructuras de Datos I\Repositorio\Oddysey\UI\OddyseyUI\OddyseyUI\bin\Debug\AudioSpectrumAdvance\AudioSpectrumAdvance\obj\Debug\AudioSpectrumAdvance.pdb
