@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.src.audio.AudioFile;
 import com.src.audio.AudioManager;
 import com.src.dataStructs.AVLTree;
+import com.src.dataStructs.SplayTree;
 import com.src.login.User;
 import com.src.login.UserManager;
 
@@ -41,6 +42,9 @@ public class Server extends Thread {
 	private static AudioManager audioManager;
 	private static UserManager userManager;
 	private AVLTree avltree;
+	SplayTree<Integer, String> splaytree = new SplayTree<Integer, String>();
+	private int splaykey = 1;
+	private int bkey = 1;
 	
 	public Server() {
 		mapper = new ObjectMapper();
@@ -48,6 +52,8 @@ public class Server extends Thread {
 		audioManager = new AudioManager();
 		userManager = new UserManager();
 		avltree = new AVLTree();
+		
+		
 	}
 	
 	/**
@@ -159,6 +165,8 @@ public class Server extends Thread {
 	        AudioFile audio = message.operationData.songToAdd;
 	        audioManager.addSong(audio);
 	        avltree.insert(audio);
+	        splaytree.insert(splaykey, audio.album);
+	        splaykey ++;
 	        //se inserta en el arbol B
 	        //se inserta en el arbol Splay
 	        
