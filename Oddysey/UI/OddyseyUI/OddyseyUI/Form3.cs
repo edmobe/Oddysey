@@ -13,26 +13,35 @@ namespace OddyseyUI
     public partial class Form3 : Form
     {
         private Form1 form1;
+        Client client;
+        public string name;
+        public string lastname;
+        public string nickname;
+        public string password;
+        public string favorites;
+        public string age;
+        string friends;
 
         public Form3(Form1 form)
         {
             form1 = form;
+            client = new Client();
             InitializeComponent();
         }
 
         //Log in Button
         private void button1_Click(object sender, EventArgs e)
         {
-            String user = LogUsername.Text;
-            String passw = LogPassword.Text;
+            nickname = LogUsername.Text;
+            password = LogPassword.Text;
             //Validation process with the given data. Checks if the spaces are filled and if the user exists.
 
 
-            if (string.IsNullOrEmpty(user) && string.IsNullOrEmpty(passw))
+            if (string.IsNullOrEmpty(nickname) && string.IsNullOrEmpty(password))
             {
                 var result = MessageBox.Show("Please enter your username\r\nPlease enter your password");// message to ask to fill in the blanks
             }
-            else if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(passw))
+            else if (string.IsNullOrEmpty(nickname) || string.IsNullOrEmpty(password))
             {
                 var result = MessageBox.Show("Please Fill in the blanks");
             }
@@ -41,25 +50,27 @@ namespace OddyseyUI
             //Once Validated||
             else
             {
-                form1.ChangeLabel(user);
-                this.Close();
+                client.CheckUser(this);
+                form1.ChangeLabel(nickname);
                 form1.Logd = true;
+                this.Close();
+                
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            String name = RegName.Text;
-            String lastname = RegLastName.Text;
-            String username = RegUsername.Text;
-            String password = RePassword.Text;
-            String favorites = RegFavGen.Text;
-            String age = textBox1.Text;
-            String friends = RegFriends.Text;
+            name = RegName.Text;
+            lastname = RegLastName.Text;
+            nickname = RegUsername.Text;
+            password = RePassword.Text;
+            favorites = RegFavGen.Text;
+            age = textBox1.Text;
+            friends = RegFriends.Text;
             String ans = "Please fill in the following spaces: ";
             int auxi = 0;
             //Auxiliary arrays to check which Spaces are empty
-            String[] form = { name, lastname, username, password, favorites, age, friends, age };
+            String[] form = { name, lastname, nickname, password, favorites, age, friends, age };
             String[] aux = { "Name", "Last Name", "Username", "Password", "Favorite Genres", "Friends", "Age", "" };
 
 
@@ -83,6 +94,10 @@ namespace OddyseyUI
             if (auxi > 0)
             {
                 var result = MessageBox.Show(ans);
+            }
+            else
+            {
+                client.AddUser(this);
             }
 
 

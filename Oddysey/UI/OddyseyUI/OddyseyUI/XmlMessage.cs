@@ -21,6 +21,16 @@ namespace OddyseyUI
             OperationData.SongToAdd = audio;
             return GetXMLString();
         }
+        public String GetAddUserXML(User user)
+        {
+            OperationData.UserToAdd = user;
+            return GetXMLString();
+        }
+        public String GetCheckUserXML(User user)
+        {
+            OperationData.UserToLog = user;
+            return GetXMLString();
+        }
 
         public String GetDeleteSongXML(String nameToDel, String authorToDel)
         {

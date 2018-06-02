@@ -1,67 +1,29 @@
 package com.src.server;
 
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.StringReader;
-import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.stream.StreamResult;
-
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathFactory;
-
-import org.jmusixmatch.MusixMatch;
-import org.jmusixmatch.MusixMatchException;
-import org.jmusixmatch.entity.track.Track;
-import org.jmusixmatch.entity.track.TrackData;
-import org.jmusixmatch.snippet.Snippet;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.XML;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.google.gson.Gson;
 import com.src.audio.AudioFile;
 import com.src.audio.AudioManager;
 import com.src.dataStructs.AVLTree;
-import com.src.dataStructs.BTree;
-import com.src.dataStructs.SplayTree;
-import com.src.login.LogInManager;
-import com.src.main.MainClass;
-
-import de.umass.lastfm.Artist;
+import com.src.login.User;
+import com.src.login.UserManager;
 
 
 /**
@@ -77,12 +39,15 @@ public class Server extends Thread {
 	private final ObjectMapper mapper;
 	//private static LogInManager lim;
 	private static AudioManager audioManager;
+	private static UserManager userManager;
 	private AVLTree avltree;
 	
 	public Server() {
 		mapper = new ObjectMapper();
 		// lim = new LogInManager();
 		audioManager = new AudioManager();
+		userManager = new UserManager();
+		avltree = new AVLTree();
 	}
 	
 	/**
@@ -161,6 +126,13 @@ public class Server extends Thread {
 			toSend = "Got the OPCode " + opCode + " (delete song).";
 		} else if (opCode.equals("005")) { // Get song metadata online
 			toSend = audioManager.getUpdatedSongDataXmlString(opCodeMessage);
+		} else if (opCode.equals("006")) {
+			if (opCodeMessage.equals("Registered")) {
+				//Envia el mensaje de que se registro con exito
+			}else if (opCodeMessage.equals("Username Already in use")) {
+				//Envia el Mensaje de que el username esta en uso
+			}
+			
 		}
 		os.write(toSend.getBytes("UTF-8"));
 	}
@@ -212,6 +184,43 @@ public class Server extends Thread {
 			
 		} else if (opCode.equals("005")) {
 			System.out.println("Updated song!");
+			
+		}else if (opCode.equals("006")) {//add user
+			String xmlString = buffer.toString("UTF-8");
+			XmlMessage message = getXmlMessage(xmlString);
+			
+	        try (PrintWriter out = new PrintWriter("Receiving.txt")) {
+			    out.println(buffer);
+			}
+	        
+	        //List<User> users = UserManager.users;
+	        User user= message.operationData.userToAdd;
+	       // System.out.println(users.isEmpty()); Debugging
+	        if(userManager.addUser(user)){
+	        		System.out.println("Saved user: " +" "+ user.name +" "+ user.lastname +" "+ user.nickname +" "+ user.password +" "+ user.age);
+	       // System.out.println(users.isEmpty()); Debugging
+	        		userManager.updateUsersFile();
+	        }
+	        else {
+	        	System.out.println("Username Already In use");
+	        }
+	        
+		}else if (opCode.equals("007")) {//add user
+			String xmlString = buffer.toString("UTF-8");
+			XmlMessage message = getXmlMessage(xmlString);
+			
+	        try (PrintWriter out = new PrintWriter("Receiving.txt")) {
+			    out.println(buffer);
+	        }
+	        User user= message.operationData.userToLog;
+	       // System.out.println(user.nickname); Debugging
+	        if(userManager.checkUser(user)) {
+	        
+	        	System.out.println("logged in as " + user.nickname);
+	        }
+	        else {
+	        	System.out.println("No such combination of user and password");
+	        }
 		}
 		
 	}
@@ -225,6 +234,7 @@ public class Server extends Thread {
 	
 	public void updateJSON() {
 		audioManager.updateSongsFile();
+		userManager.updateUsersFile();
 	}
 	
 	
