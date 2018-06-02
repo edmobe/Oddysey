@@ -139,6 +139,18 @@ public class Server extends Thread {
 				//Envia el Mensaje de que el username esta en uso
 			}
 			
+		} else if (opCode.equals("007")) {
+			//toSend = userManager.getUpdatedUserDataXmlString(opCodeMessage);
+			
+		} else if (opCode.equals("008")) {
+			audioManager.getSongsByTitle();
+			toSend = audioManager.getSongsMainDataXmlStringTitle();
+		} else if (opCode.equals("009")) {
+			audioManager.getSongsByAuthor();
+			toSend = audioManager.getSongsMainDataXmlStringAuthor();
+		} else if (opCode.equals("010")) {
+			audioManager.getSongsByAlbum();
+			toSend = audioManager.getSongsMainDataXmlStringAlbum();
 		}
 		os.write(toSend.getBytes("UTF-8"));
 	}
@@ -229,6 +241,26 @@ public class Server extends Thread {
 	        else {
 	        	System.out.println("No such combination of user and password");
 	        }
+		} else if (opCode.equals("008")){
+			audioManager.getSongsByTitle();
+			List<AudioFile> test = audioManager.songsTitle;
+			System.out.println("Sorted By Title");
+			for(int i = 0; i < test.size(); i++) {
+				System.out.println(test.get(i).name);
+			}
+
+		} else if (opCode.equals("009")) {
+			List<AudioFile> test = audioManager.songsAuthor;
+			System.out.println("Sorted By Author:");
+			for(int i = 0; i < test.size(); i++) {
+				System.out.println(test.get(i).author);
+			}
+		} else if (opCode.equals("010")) {
+			List<AudioFile> test = audioManager.songsAlbum;
+			System.out.println("Sorted By Album:");
+			for(int i = 0; i < test.size(); i++) {
+				System.out.println(test.get(i).album);
+			}
 		}
 		
 	}
