@@ -105,7 +105,7 @@ namespace OddyseyUI
             AudioFile audio = new AudioFile();
             Form2 f2 = new Form2();
             f2.ShowDialog();
-            audio.SetMainParameters(f2.name, f2.author, f2.album, f2.score);
+            audio.SetMainParameters(f2.name, f2.author);
             audio.Data = Convert.ToBase64String(File.ReadAllBytes(fileName));
             string toSend = m1.GetAddSongXML(audio);
             SendMessage(toSend, "001/null");

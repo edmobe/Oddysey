@@ -18,12 +18,10 @@ namespace OddyseyUI
         public string Data { get; set; }
         public string About { get; set; }
 
-        public void SetMainParameters(string name, string author, string album, string score)
+        public void SetMainParameters(string name, string author)
         {
             Name = name;
             Author = author;
-            Album = album;
-            Score = score;
         }
 
         public void GetData()
