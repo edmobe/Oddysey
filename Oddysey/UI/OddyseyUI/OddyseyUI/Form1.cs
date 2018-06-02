@@ -41,9 +41,22 @@ namespace OddyseyUI
 
         private void SearchButton_Click(object sender, EventArgs e)//Search by song tittle
         {
-            string title = Search.Text;
-            //client.findSong(); //Hay que implementarlo
             
+                string title = Search.Text;
+                dataGridView1.Rows.Clear();
+                AudioFile song = client.findSongTitle(title);
+
+            try
+            {
+
+                dataGridView1.Rows.Add(song.Name, song.Author, song.Album, song.Score);
+            }
+            catch
+            {
+                UpdateDisplay();
+            }
+
+
         }
 
         private void Play_Click(object sender, EventArgs e) // If play button was pressed
@@ -306,6 +319,37 @@ namespace OddyseyUI
         private void label3_Click(object sender, EventArgs e)
         {
             client.SortSongsAlbum();
+        }
+
+        private void SearchArtistButton_Click(object sender, EventArgs e)
+        {
+            string author = Search.Text;
+            dataGridView1.Rows.Clear();
+            AudioFile song = client.findSongAuthor(author);
+            try
+            {
+
+                dataGridView1.Rows.Add(song.Name, song.Author, song.Album, song.Score);
+            }
+            catch
+            {
+                UpdateDisplay();
+            }
+        }
+
+        private void SearchAlbumButton_Click(object sender, EventArgs e)
+        {
+            string album = Search.Text;
+            dataGridView1.Rows.Clear();
+            AudioFile song = client.findSongAlbum(album);
+            try
+            { 
+
+                dataGridView1.Rows.Add(song.Name, song.Author, song.Album, song.Score);
+            } catch
+            {
+                UpdateDisplay();
+            }
         }
 
         /*

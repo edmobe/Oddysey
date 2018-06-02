@@ -273,5 +273,41 @@ namespace OddyseyUI
             return null;
         }
 
+        public AudioFile findSongTitle(String title)
+        {
+            for (int i = 0; i < SongList.Count; i++)
+            {
+                if (SongList[i].Name == title)
+                {
+                    return SongList[i];
+                }
+            }
+            return null;
+        }
+
+        public AudioFile findSongAuthor(String author)
+        {
+            for (int i = 0; i < SongList.Count; i++)
+            {
+                if (SongList[i].Author == author)
+                {
+                    return SongList[i];
+                }
+            }
+            return null;
+        }
+
+        public AudioFile findSongAlbum(String album)
+        {
+            for (int i = 0; i < SongList.Count; i++)
+            {
+                if (SongList[i].Album == album)
+                {
+                    return SongList[i];
+                }
+            }
+            return null;
+        }
+
     }
 }

@@ -30,7 +30,7 @@ namespace OddyseyUI
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
             this.NotiLabel = new System.Windows.Forms.Label();
@@ -51,11 +51,14 @@ namespace OddyseyUI
             this.UserLabel = new System.Windows.Forms.Label();
             this.FriendList = new System.Windows.Forms.ListBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
             this.Play = new System.Windows.Forms.Button();
@@ -65,9 +68,6 @@ namespace OddyseyUI
             this.NowPlaying = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Equalizer = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -99,18 +99,17 @@ namespace OddyseyUI
             this.NotiLabel.ForeColor = System.Drawing.Color.GhostWhite;
             this.NotiLabel.Location = new System.Drawing.Point(19, 34);
             this.NotiLabel.Name = "NotiLabel";
-            this.NotiLabel.Size = new System.Drawing.Size(102, 18);
+            this.NotiLabel.Size = new System.Drawing.Size(85, 16);
             this.NotiLabel.TabIndex = 12;
             this.NotiLabel.Text = "Notifications";
             // 
             // NotificationList
             // 
             this.NotificationList.FormattingEnabled = true;
-            this.NotificationList.ItemHeight = 16;
             this.NotificationList.Location = new System.Drawing.Point(18, 82);
             this.NotificationList.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.NotificationList.Name = "NotificationList";
-            this.NotificationList.Size = new System.Drawing.Size(170, 516);
+            this.NotificationList.Size = new System.Drawing.Size(170, 511);
             this.NotificationList.TabIndex = 11;
             this.NotificationList.SelectedIndexChanged += new System.EventHandler(this.NotificationList_SelectedIndexChanged);
             // 
@@ -141,6 +140,7 @@ namespace OddyseyUI
             this.SearchAlbumButton.TabIndex = 7;
             this.SearchAlbumButton.Text = "Search by Album";
             this.SearchAlbumButton.UseVisualStyleBackColor = true;
+            this.SearchAlbumButton.Click += new System.EventHandler(this.SearchAlbumButton_Click);
             // 
             // SearchArtistButton
             // 
@@ -150,6 +150,7 @@ namespace OddyseyUI
             this.SearchArtistButton.TabIndex = 6;
             this.SearchArtistButton.Text = "Search by Artist";
             this.SearchArtistButton.UseVisualStyleBackColor = true;
+            this.SearchArtistButton.Click += new System.EventHandler(this.SearchArtistButton_Click);
             // 
             // button6
             // 
@@ -205,7 +206,7 @@ namespace OddyseyUI
             this.SongLabel.ForeColor = System.Drawing.Color.Black;
             this.SongLabel.Location = new System.Drawing.Point(30, 11);
             this.SongLabel.Name = "SongLabel";
-            this.SongLabel.Size = new System.Drawing.Size(133, 51);
+            this.SongLabel.Size = new System.Drawing.Size(109, 42);
             this.SongLabel.TabIndex = 2;
             this.SongLabel.Text = "Songs";
             // 
@@ -214,7 +215,7 @@ namespace OddyseyUI
             this.Search.Location = new System.Drawing.Point(27, 78);
             this.Search.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(191, 22);
+            this.Search.Size = new System.Drawing.Size(191, 20);
             this.Search.TabIndex = 1;
             this.Search.Text = "Search";
             // 
@@ -266,7 +267,7 @@ namespace OddyseyUI
             this.LoggedLabel.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.LoggedLabel.Location = new System.Drawing.Point(3, 11);
             this.LoggedLabel.Name = "LoggedLabel";
-            this.LoggedLabel.Size = new System.Drawing.Size(103, 18);
+            this.LoggedLabel.Size = new System.Drawing.Size(84, 16);
             this.LoggedLabel.TabIndex = 2;
             this.LoggedLabel.Text = "Logged in as:";
             this.LoggedLabel.Click += new System.EventHandler(this.LoggedLabel_Click);
@@ -280,7 +281,7 @@ namespace OddyseyUI
             this.UserLabel.ForeColor = System.Drawing.SystemColors.Control;
             this.UserLabel.Location = new System.Drawing.Point(133, 11);
             this.UserLabel.Name = "UserLabel";
-            this.UserLabel.Size = new System.Drawing.Size(68, 18);
+            this.UserLabel.Size = new System.Drawing.Size(56, 16);
             this.UserLabel.TabIndex = 1;
             this.UserLabel.Text = "USER ID";
             this.UserLabel.Click += new System.EventHandler(this.UserLabel_Click);
@@ -288,11 +289,10 @@ namespace OddyseyUI
             // FriendList
             // 
             this.FriendList.FormattingEnabled = true;
-            this.FriendList.ItemHeight = 16;
             this.FriendList.Location = new System.Drawing.Point(26, 82);
             this.FriendList.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.FriendList.Name = "FriendList";
-            this.FriendList.Size = new System.Drawing.Size(177, 516);
+            this.FriendList.Size = new System.Drawing.Size(177, 511);
             this.FriendList.TabIndex = 0;
             // 
             // panel3
@@ -308,6 +308,17 @@ namespace OddyseyUI
             this.panel3.Size = new System.Drawing.Size(1160, 704);
             this.panel3.TabIndex = 17;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 3F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(669, 33);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(14, 5);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Album";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -320,15 +331,15 @@ namespace OddyseyUI
             this.Column2,
             this.Column3,
             this.Column4});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Location = new System.Drawing.Point(111, 42);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.MultiSelect = false;
@@ -386,6 +397,28 @@ namespace OddyseyUI
             this.Column4.ReadOnly = true;
             this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Column4.Width = 250;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 3F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(415, 31);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(12, 5);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Artist";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 3F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(166, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(10, 5);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Title";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // panel5
             // 
@@ -451,7 +484,7 @@ namespace OddyseyUI
             this.ArtistLabel.ForeColor = System.Drawing.Color.GhostWhite;
             this.ArtistLabel.Location = new System.Drawing.Point(127, 52);
             this.ArtistLabel.Name = "ArtistLabel";
-            this.ArtistLabel.Size = new System.Drawing.Size(52, 16);
+            this.ArtistLabel.Size = new System.Drawing.Size(43, 14);
             this.ArtistLabel.TabIndex = 6;
             this.ArtistLabel.Text = "ARTIST";
             // 
@@ -462,7 +495,7 @@ namespace OddyseyUI
             this.label6.ForeColor = System.Drawing.Color.GhostWhite;
             this.label6.Location = new System.Drawing.Point(127, 33);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(91, 16);
+            this.label6.Size = new System.Drawing.Size(73, 14);
             this.label6.TabIndex = 5;
             this.label6.Text = "SONG NAME";
             // 
@@ -473,7 +506,7 @@ namespace OddyseyUI
             this.NowPlaying.ForeColor = System.Drawing.Color.GhostWhite;
             this.NowPlaying.Location = new System.Drawing.Point(127, 14);
             this.NowPlaying.Name = "NowPlaying";
-            this.NowPlaying.Size = new System.Drawing.Size(122, 16);
+            this.NowPlaying.Size = new System.Drawing.Size(99, 14);
             this.NowPlaying.TabIndex = 4;
             this.NowPlaying.Text = "NOW PLAYING:";
             this.NowPlaying.Click += new System.EventHandler(this.NowPlaying_Click);
@@ -500,39 +533,6 @@ namespace OddyseyUI
             this.Equalizer.Text = "Equalizer";
             this.Equalizer.UseVisualStyleBackColor = false;
             this.Equalizer.Click += new System.EventHandler(this.Equalizer_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 3F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(166, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(12, 6);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Title";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 3F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(415, 31);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(14, 6);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Artist";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 3F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(669, 33);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(17, 6);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Album";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // Form1
             // 
