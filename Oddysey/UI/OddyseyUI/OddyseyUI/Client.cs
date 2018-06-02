@@ -15,10 +15,12 @@ namespace OddyseyUI
     {
         private Socket clientSocket;
         private List<AudioFile> SongList;
+        MD5 md5;
 
         public Client ()
         {
             SongList = new List<AudioFile>();
+            md5 = new MD5();
             UpdateSongs();
         }
 
@@ -115,7 +117,7 @@ namespace OddyseyUI
             CreateTestFile(toSend);
 
         }
-
+        
         public void DeleteSong(string name, string author)
         {
             XmlMessage xml = new XmlMessage();
@@ -174,6 +176,26 @@ namespace OddyseyUI
                 return true;
             }
 
+        }
+        public void AddUser(Form3 form)
+        {
+            XmlMessage m1 = new XmlMessage();
+            User user = new User();
+            Form3 f3 = form;
+            // string hashedPass = md5.CreateMD5(f3.password);
+            user.SetMainParameter(f3.name, f3.lastname, f3.nickname, md5.CreateMD5(f3.password), f3.age);
+            string toSend = m1.GetAddUserXML(user);
+            SendMessage(toSend, "006/null");
+
+        }
+        public void CheckUser(Form3 form)
+        {
+            XmlMessage m1 = new XmlMessage();
+            User user = new User();
+            Form3 f3 = form;
+            user.SetLogParameter(f3.nickname, md5.CreateMD5(f3.password));
+            string toSend = m1.GetCheckUserXML(user);
+            SendMessage(toSend, "007/null");
         }
 
         public List<AudioFile> GetSongList()
