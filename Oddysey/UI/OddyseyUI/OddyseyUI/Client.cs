@@ -145,6 +145,63 @@ namespace OddyseyUI
                 SongList.Add((AudioFile)serializer.Deserialize(new XmlNodeReader(node)));
             }
         }
+        public void SortSongsTitle()
+        {
+            SongList = new List<AudioFile>();
+            string songMetadataXml = SendMessage("", "008/null");
+
+            // Testing
+            string path = @"Received.xml";
+            File.WriteAllText(path, songMetadataXml);
+
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(songMetadataXml);
+            XmlNodeList audioFiles = doc.SelectNodes("XmlMessage/OperationData/AudioFiles/AudioFile");
+            XmlSerializer serializer = new XmlSerializer(typeof(AudioFile));
+
+            foreach (XmlNode node in audioFiles)
+            {
+                SongList.Add((AudioFile)serializer.Deserialize(new XmlNodeReader(node)));
+            }
+        }
+        public void SortSongsAuthor()
+        {
+            SongList = new List<AudioFile>();
+            string songMetadataXml = SendMessage("", "009/null");
+
+            // Testing
+            string path = @"Received.xml";
+            File.WriteAllText(path, songMetadataXml);
+
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(songMetadataXml);
+            XmlNodeList audioFiles = doc.SelectNodes("XmlMessage/OperationData/AudioFiles/AudioFile");
+            XmlSerializer serializer = new XmlSerializer(typeof(AudioFile));
+
+            foreach (XmlNode node in audioFiles)
+            {
+                SongList.Add((AudioFile)serializer.Deserialize(new XmlNodeReader(node)));
+            }
+        }
+        public void SortSongsAlbum()
+        {
+            SongList = new List<AudioFile>();
+            string songMetadataXml = SendMessage("", "010/null");
+
+            // Testing
+            string path = @"Received.xml";
+            File.WriteAllText(path, songMetadataXml);
+
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(songMetadataXml);
+            XmlNodeList audioFiles = doc.SelectNodes("XmlMessage/OperationData/AudioFiles/AudioFile");
+            XmlSerializer serializer = new XmlSerializer(typeof(AudioFile));
+
+            foreach (XmlNode node in audioFiles)
+            {
+                SongList.Add((AudioFile)serializer.Deserialize(new XmlNodeReader(node)));
+            }
+        }
 
         public void DownloadSong(string name, string author)
         {

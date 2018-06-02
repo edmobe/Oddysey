@@ -1,11 +1,8 @@
 <XmlMessage>
   <OperationData>
-    <UserToAdd>
-      <Name>Eduardo</Name>
-      <LastName>Moya</LastName>
+    <UserToLog>
       <NickName>edmobe</NickName>
-      <Password>202CB962AC59075B964B07152D234B70</Password>
-      <Age>20</Age>
-    </UserToAdd>
+      <Password>81DC9BDB52D04DC20036DBD8313ED055</Password>
+    </UserToLog>
   </OperationData>
 </XmlMessage>

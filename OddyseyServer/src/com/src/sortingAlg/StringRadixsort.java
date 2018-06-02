@@ -3,7 +3,7 @@ package com.src.sortingAlg;
 import java.util.Arrays;
 
 public class StringRadixsort {
-	private char lower = 'a';
+	private char lower = 'A';
 	private char upper = 'z';
 	
 	/** 

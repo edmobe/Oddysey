@@ -1,54 +1,34 @@
 package com.src.audio;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringWriter;
-import java.io.Writer;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
-import com.src.main.MainClass;
-import com.src.server.OperationData;
-import com.src.server.XmlMessage;
 
 import org.jmusixmatch.MusixMatch;
 import org.jmusixmatch.MusixMatchException;
 import org.jmusixmatch.entity.track.Track;
 import org.jmusixmatch.entity.track.TrackData;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.XML;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.src.server.OperationData;
+import com.src.server.XmlMessage;
+import com.src.sortingAlg.StringBubblesort;
+import com.src.sortingAlg.StringQuicksort;
+import com.src.sortingAlg.StringRadixsort;
 
 public class AudioManager {
 
 	// private FileWriter fl;
 	public static List<AudioFile> songs;
+	public static List<AudioFile> songsTitle;
+	public static List<AudioFile> songsAlbum;
+	public static List<AudioFile> songsAuthor;
 	/*
 	// Falta hacer que funcionen con AudioFiles
 	private static AVLTree byArtist;
@@ -59,6 +39,9 @@ public class AudioManager {
 	public AudioManager() {
 		// Hacer que el JSON agregue las canciones a songs
 		songs = new ArrayList<AudioFile>();
+		songsTitle = new ArrayList<AudioFile>();
+		songsAuthor = new ArrayList<AudioFile>();
+		songsAlbum = new ArrayList<AudioFile>();
 		parseAudiosFile();
 		/*
 		// Falta hacer que funcionen con AudioFiles
@@ -86,6 +69,58 @@ public class AudioManager {
 			e.printStackTrace();
 		}
 	}
+	//Sorting the songs by parameter
+	//By Name
+	public void getSongsByTitle() {
+		songsTitle.clear();
+		String[] aux = new String[songs.size()];
+		for (int i = 0; i < songs.size(); i++) {
+			AudioFile song = songs.get(i);
+			aux[i] = song.name;
+		}
+		StringQuicksort sorter = new StringQuicksort();
+		sorter.sort(aux);
+		for (int i = 0; i < aux.length; i++) {
+			songsTitle.add(getSongByName(aux[i]));
+		}
+	}
+	//By Author
+	public void getSongsByAuthor() {
+		String[] aux = new String[songs.size()];
+		for (int i = 0; i < songs.size(); i++) {
+			AudioFile song = songs.get(i);
+			aux[i] = song.author.replace(" ", "");
+		}
+		StringRadixsort sorter = new StringRadixsort();
+		sorter.Sort(aux);
+		for (int i = 0; i < aux.length; i++) {
+			songsAuthor.add(getSongByAuthor(aux[i]));
+		}
+	}
+	//By Album
+	public void getSongsByAlbum() {
+		songsAlbum.clear();
+		String[] aux = new String[songs.size()];
+		List<String> albumless = new ArrayList<String>();
+		for (int i = 0; i < songs.size(); i++) {
+			AudioFile song = songs.get(i);
+			if(song.album != null)
+				aux[i] = song.album;
+			else {
+				aux[i]="z";
+				albumless.add(song.name);
+			}
+		}
+		StringBubblesort sorter = new StringBubblesort();
+		sorter.sort(aux);
+		for (int i = 0; i < aux.length; i++) {
+			if (aux[i]!= "z")
+				songsAlbum.add(getSongByAlbum(aux[i]));
+		}
+		for (String name :albumless) {
+			songsAlbum.add(getSongByName(name));
+		}
+	}
 
 	public List<AudioFile> getSongList() {
 		return songs;
@@ -95,6 +130,33 @@ public class AudioManager {
 		for (int i = 0; i < songs.size(); i++) {
 			AudioFile song = songs.get(i);
 			if(song.name.equals(name) && song.author.equals(author)) {
+				return song;
+			}
+		}
+		return null;
+	}
+	public AudioFile getSongByName(String name) {
+		for (int i = 0; i < songs.size(); i++) {
+			AudioFile song = songs.get(i);
+			if(song.name.equals(name)) {
+				return song;
+			}
+		}
+		return null;
+	}
+	public AudioFile getSongByAuthor(String author) {
+		for (int i = 0; i < songs.size(); i++) {
+			AudioFile song = songs.get(i);
+			if(song.author.replace(" ", "").equals(author)) {
+				return song;
+			}
+		}
+		return null;
+	}
+	public AudioFile getSongByAlbum(String album) {
+		for (int i = 0; i < songs.size(); i++) {
+			AudioFile song = songs.get(i);
+			if(song.album.equals(album)) {
 				return song;
 			}
 		}
@@ -152,10 +214,85 @@ public class AudioManager {
 		}
 		return xml.getXmlString();
 	}
+	public String getSongsMainDataXmlStringTitle() {
+		XmlMessage xml = new XmlMessage();
+		OperationData opData = xml.operationData;
+		for (int i = 0; i < songsTitle.size(); i++) {
+			AudioFile song = getSongCopyTitle(i);
+			song.data = null; // this reduces the song size considerably
+			opData.audioFiles.add(song);
+		}
+		return xml.getXmlString();
+	}
+	public String getSongsMainDataXmlStringAuthor() {
+		XmlMessage xml = new XmlMessage();
+		OperationData opData = xml.operationData;
+		for (int i = 0; i < songsAuthor.size(); i++) {
+			AudioFile song = getSongCopyAuthor(i);
+			song.data = null; // this reduces the song size considerably
+			opData.audioFiles.add(song);
+		}
+		return xml.getXmlString();
+	}
+	public String getSongsMainDataXmlStringAlbum() {
+		XmlMessage xml = new XmlMessage();
+		OperationData opData = xml.operationData;
+		for (int i = 0; i < songsAlbum.size(); i++) {
+			AudioFile song = getSongCopyAlbum(i);
+			song.data = null; // this reduces the song size considerably
+			opData.audioFiles.add(song);
+		}
+		return xml.getXmlString();
+	}
 
 	private AudioFile getSongCopy(int position) {
 		AudioFile copy = new AudioFile();
 		AudioFile original = songs.get(position);
+		
+		copy.about = original.about;
+		copy.album = original.album;
+		copy.author = original.author;
+		copy.data = original.data;
+		copy.lyrics = original.lyrics;
+		copy.name = original.name;
+		copy.score = original.score;
+		copy.year = original.year;
+		copy.length = original.length;
+		return copy;
+	}
+	private AudioFile getSongCopyTitle(int position) {
+		AudioFile copy = new AudioFile();
+		AudioFile original = songsTitle.get(position);
+		
+		copy.about = original.about;
+		copy.album = original.album;
+		copy.author = original.author;
+		copy.data = original.data;
+		copy.lyrics = original.lyrics;
+		copy.name = original.name;
+		copy.score = original.score;
+		copy.year = original.year;
+		copy.length = original.length;
+		return copy;
+	}
+	private AudioFile getSongCopyAuthor(int position) {
+		AudioFile copy = new AudioFile();
+		AudioFile original = songsAuthor.get(position);
+		
+		copy.about = original.about;
+		copy.album = original.album;
+		copy.author = original.author;
+		copy.data = original.data;
+		copy.lyrics = original.lyrics;
+		copy.name = original.name;
+		copy.score = original.score;
+		copy.year = original.year;
+		copy.length = original.length;
+		return copy;
+	}
+	private AudioFile getSongCopyAlbum(int position) {
+		AudioFile copy = new AudioFile();
+		AudioFile original = songsAlbum.get(position);
 		
 		copy.about = original.about;
 		copy.album = original.album;

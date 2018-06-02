@@ -293,6 +293,21 @@ namespace OddyseyUI
             edit.Show();
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+            client.SortSongsTitle();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            client.SortSongsAuthor();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            client.SortSongsAlbum();
+        }
+
         /*
         private void form_FormClosing(object sender, FormClosingEventArgs e)
         {
